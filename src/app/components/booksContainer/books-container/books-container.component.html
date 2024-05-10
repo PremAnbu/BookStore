@@ -1,0 +1,15 @@
+<div class="books-main-cnt">
+    <div class="heading-content">
+        <div class="book-items">
+           <span class="book">Books</span>
+           <span class="items">(234 items)</span>
+        </div>
+        <div class="sort-item">
+            <span>Sort by relevance</span>
+            <mat-icon class="dropdown-icon" svgIcon="dropdown-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
+        </div>
+    </div>
+    <div class="books">
+        <app-books [BookObjectList]="booksList"></app-books>
+    </div>
+</div>

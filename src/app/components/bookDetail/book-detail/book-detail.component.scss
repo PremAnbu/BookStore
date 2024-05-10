@@ -1,0 +1,63 @@
+.bookdetails-main-cnt {
+    width: 100%;
+    // padding: 1% 12%;
+    border: 2px solid green;
+}
+.book-details-cnt{
+    border: 2px solid black;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+
+}
+.book-image-and-options{
+    border: 2px solid black;
+    height: fit-content;
+    width: 80%;
+}
+.book-image {
+    border: 2px solid rgb(216, 31, 31);
+    // height: 30%; 
+    height: 380px;
+    width: 70%;     
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // padding: 5% 8%; 
+    box-shadow: 0 -4px 4px -4px rgba(0, 0, 0, 0.3), -4px 0 4px -4px rgba(0, 0, 0, 0.3), 
+                4px 0 4px -4px rgba(0, 0, 0, 0.3), 0 6px 6px -2px rgba(0, 0, 0, 0.2); 
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    gap: 5%; 
+    margin-left: 7%; 
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding-right: 20%;
+    width: 85%; 
+    border: 2px solid rebeccapurple;
+}
+
+.rating-quantity {
+    display: flex;
+    flex-direction: row;
+    gap: 1%; 
+}
+
+/* For horizontal line */
+.book-details hr {
+    border-top: 1px solid black;
+    margin: 2% 0; 
+}
+
+/* For stars */
+.stars {
+    font-size: 2.4vw; 
+    outline-color: black;
+}

@@ -1,0 +1,35 @@
+<div class="bookdetails-main-cnt">
+    <div class="back-to-dashbaord">
+      <a routerLink="/dashboard/books"><strong>Home</strong><span> /Books </span></a> 
+    </div>
+    
+    <div *ngIf="bookDetail" class="book-details-cnt">
+        <div class="book-image-and-options">
+            <div class="book-image">
+               <img src="{{bookDetail.imagePath}}" height="300px" width="220px">
+            </div>
+            <div class="options">
+                <button mat-flat-button class="cart-button">ADD TO BAG</button>
+                
+                <button mat-flat-button class="wishlist-button"> WISHLIST</button>
+            </div>
+        </div>
+
+        <div class="book-details">
+            <span><h2>{{bookDetail.title}}</h2></span>
+            <span>by {{bookDetail.author}}</span>
+            <div class="rating-quantity">
+              <span class="rating">4.5 &#9733;</span>
+              <span>({{bookDetail.quantity}})</span>
+            </div>
+            <span><b>Rs. {{bookDetail.price}} </b><del>Rs. 2000</del></span>
+            <hr>
+            <p style="margin: 0px;">Book details</p>
+            <span><b>{{bookDetail.description}}</b></span>
+            <hr>
+            <span><b>Customer FeedBack</b></span>
+            <span class="stars">  &#9733; &#9733; &#9733; &#9733; &#9733;</span>
+        </div>
+      <!-- Display other book details as needed -->
+    </div>
+  </div>

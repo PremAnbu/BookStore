@@ -1,0 +1,22 @@
+.heading-content{
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.book-items{
+    padding: 1.564% 0.700% 0.800% 10%;
+}
+.book{
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.sort-item{
+    border: 1px solid blueviolet;
+    margin: 1.564% 14% 0% 0%;
+}
+.books{
+   display: flex;
+   align-items: center;
+}

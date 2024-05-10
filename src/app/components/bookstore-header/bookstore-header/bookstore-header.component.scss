@@ -1,0 +1,72 @@
+.header-main-cnt {
+    width: 100%;
+    background-color: rgb(147, 25, 25);
+    display: flex;
+    justify-content: space-around;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.bookstore-icon {
+    display: flex;
+    flex-direction: row;
+}
+.bookstore-icon img {
+    height: 27px; 
+};
+
+.bookstore-icon span {
+    color: white;
+    padding: 0.5% 0% 0.25% 3%; 
+    font-size: 130%; 
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 6%;
+}
+
+.search-input {
+    width: 100%; 
+    padding: 1.1%; 
+    border-radius: 0.8%; 
+    text-indent: 5%;
+    border: none;
+    border-radius: 7%;
+}
+
+.search-icon {
+    height: 2%;
+    width: 3.125%; 
+    margin-left: -101%; 
+}   
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%; 
+    color: white;
+    font-size: 0.6em; 
+    gap: 0.5%; 
+    margin-top: 0.5%; 
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3.5%;
+    color: white;
+    font-size: 0.6em; 
+    gap: 0.5%; 
+    margin-top: 0.5%; 
+}
+@media only screen and (min-width : 300px) and (max-width : 500px){
+    .bookstore-icon span {
+        display: none;
+    }
+}
