@@ -19,9 +19,7 @@ export class BooksContainerComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.bookService.getAllBooksCall().subscribe(res => {
-      console.log(res.data);
-      this.booksList=[...res.data]
-    })
+    this.bookService.currentBookState .subscribe(res=>this.booksList=res)
+
   }
 }

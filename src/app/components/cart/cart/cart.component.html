@@ -1,0 +1,37 @@
+<div class="cart-outer-cnt" *ngFor="let book of cartList">
+    <br>
+    <div class="count-cnt">
+        <span><b>My cart()</b></span>
+        <div class="loc-icon-cnt">
+            <span class="loc-icon"> 
+                <mat-icon svgIcon="location-icon"></mat-icon>
+                Premkumar,Sillarahalli,No... 
+                <mat-icon svgIcon="drop-down-icon"></mat-icon>
+            </span>
+        </div>
+    </div>
+    <br>
+    <div class="img-cnt">
+        <div class="content">
+            <img [src]="book.imagePath" alt="">
+            <div class="cart-detail">
+                <span class="booktitle">{{book.title}}</span>
+                <span style="color: #818181;">{{book.author}}</span>
+                <div class="rating-cnt">
+                    <span class="sellingprice">Rs.{{book.price}}
+                        <span class="originalprice">Rs.1999</span>
+                    </span>
+                    <div class="count">
+                        <span class="symbol" (click)="decreaseCount(book)">-</span> 
+                        <span class="countvalue">{{book.quantity}}</span> 
+                        <span class="symbol"  (click)="increaseCount(book)">+</span>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <button class="button" mat-raised-button color="primary" (click)="placeOrder(book)">PLACE ORDER</button>
+    </div>
+</div>
+
+<div class="bottom"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Address Details</div>
+<div class="bottom"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Order Summary</div>

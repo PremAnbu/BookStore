@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="login-form">
+    <form [formGroup]="loginForm">
+
+        <label><b>Email Id</b></label>
+        <mat-form-field appearance="outline" class="input">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter Email" formControlName="email">
+            <mat-error *ngIf="loginControl['email']?.hasError('required')">Email required</mat-error>
+            <mat-error *ngIf="loginControl['email']?.hasError('email')">Incorrect Email</mat-error>
+        </mat-form-field> 
+        
+        <label class="password"><b>Password</b></label>
+        <mat-form-field appearance="outline" class="input">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter Password" formControlName="password">
+            <mat-error *ngIf="loginControl['password']?.hasError('required')">Password required</mat-error>
+            <mat-error *ngIf="loginControl['password']?.hasError('minlength')">Password should contain 6 characters</mat-error>
+        </mat-form-field>
+        
+        <label class="forgot">Forgot Password</label>
+        <button class="login-button" (click)="handleLogin()">Login</button>
+        <div class="divider">
+            <hr class="half-line"><span class="or">OR</span><hr class="half-line">
+        </div>
+        
+        <div class="social-buttons">
+            <button class="google-button">Google</button>
+            <button class="facebook-button">Facebook</button>
+        </div>
+    </form>
+</div>

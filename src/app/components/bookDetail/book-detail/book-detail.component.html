@@ -1,6 +1,6 @@
 <div class="bookdetails-main-cnt">
     <div class="back-to-dashbaord">
-      <a routerLink="/dashboard/books"><strong>Home</strong><span> /Books </span></a> 
+      <a routerLink="/books"><strong>Home</strong><span> /Books </span></a> 
     </div>
     
     <div *ngIf="bookDetail" class="book-details-cnt">
@@ -9,8 +9,12 @@
                <img src="{{bookDetail.imagePath}}" height="300px" width="220px">
             </div>
             <div class="options">
-                <button mat-flat-button class="cart-button">ADD TO BAG</button>
-                
+                <button mat-flat-button *ngIf="!addedToBag" class="cart-button" (click)="addToBag()">ADD TO BAG</button>
+                <div *ngIf="addedToBag" class="quantity-update">
+                  <span class="symbol" (click)="decreaseCount()">-</span>
+                  <span class="number-of-books">{{ count }}</span>
+                  <span class="symbol" (click)="increaseCount()">+</span>
+                </div>
                 <button mat-flat-button class="wishlist-button"> WISHLIST</button>
             </div>
         </div>
@@ -25,11 +29,10 @@
             <span><b>Rs. {{bookDetail.price}} </b><del>Rs. 2000</del></span>
             <hr>
             <p style="margin: 0px;">Book details</p>
-            <span><b>{{bookDetail.description}}</b></span>
+            <span>{{bookDetail.description}}</span>
             <hr>
             <span><b>Customer FeedBack</b></span>
             <span class="stars">  &#9733; &#9733; &#9733; &#9733; &#9733;</span>
         </div>
-      <!-- Display other book details as needed -->
     </div>
   </div>

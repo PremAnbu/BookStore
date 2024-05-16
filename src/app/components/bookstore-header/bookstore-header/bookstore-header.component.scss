@@ -15,14 +15,15 @@
     display: flex;
     flex-direction: row;
 }
+
 .bookstore-icon img {
-    height: 27px; 
-};
+    height: 23px;
+}
 
 .bookstore-icon span {
     color: white;
-    padding: 0.5% 0% 0.25% 3%; 
-    font-size: 130%; 
+    padding: 0.5% 0% 0.25% 3%;
+    font-size: 120%;
 }
 
 .search-container {
@@ -32,40 +33,63 @@
 }
 
 .search-input {
-    width: 100%; 
-    padding: 1.1%; 
-    border-radius: 0.8%; 
-    text-indent: 5%;
-    border: none;
-    border-radius: 7%;
+    width: 550px;
+    height: 28px;
+    border-radius: 8px;
+    text-indent: 30px;
 }
 
 .search-icon {
-    height: 2%;
-    width: 3.125%; 
-    margin-left: -101%; 
-}   
+    height: 20px;
+    width: 15px;
+    margin-left: -550px;
+    line-height: 0px;
+}
 
 .profile {
     display: flex;
     flex-direction: column;
-    margin-left: 30%; 
+    margin-left: auto;
     color: white;
-    font-size: 0.6em; 
-    gap: 0.5%; 
-    margin-top: 0.5%; 
+    font-size: 10px;
+    gap: 5px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .cart {
     display: flex;
     flex-direction: column;
-    margin-left: 3.5%;
+    margin-left: 80px;
     color: white;
-    font-size: 0.6em; 
-    gap: 0.5%; 
-    margin-top: 0.5%; 
+    font-size: 10px;
+    gap: 5px;
+    margin-top: 10px;
+    cursor: pointer;
 }
-@media only screen and (min-width : 300px) and (max-width : 500px){
+
+.profile-history {
+    // border: 2px solid red;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2% 4%;
+    gap: 6px;
+}
+.profile-history span{
+    font-size: 15px;
+}
+
+.login-signup button {
+    border: 1px solid red;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: red;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
     .bookstore-icon span {
         display: none;
     }

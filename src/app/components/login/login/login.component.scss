@@ -1,0 +1,71 @@
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 5%;
+}
+.password{
+    margin-top: -5px;
+}
+.input {
+    width: 320px;
+}
+
+.forgot {
+    margin-top: -20px;
+    margin-left: 65%;
+}
+
+.divider {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.half-line {
+    width: 50%;
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.or {
+    padding: 0 10px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center; /* Changed to center */
+    margin-top: -5px;
+    margin-left: 50px; /* Changed to auto */
+    gap:20px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.google-button,
+.facebook-button {
+    padding: 10px 20px;
+    background-color: #4285f4; /* Google Blue */
+    color: white;
+    border: none;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.facebook-button {
+    background-color: #3b5998; /* Facebook Blue */
+}

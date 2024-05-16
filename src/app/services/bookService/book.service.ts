@@ -8,20 +8,13 @@ import { BookObject } from 'src/assets/BookObjectInterface';
 })
 export class BookService {
 
-  private bookobj  =new BehaviorSubject<BookObject>({});
+  private bookobj  =new BehaviorSubject<BookObject[]>([]);
+  currentBookState=this.bookobj.asObservable();
 
-  currentstate=this.bookobj.asObservable();
-
-  changeState(value:BookObject)
+  changeState(value:BookObject[])
   {
     this.bookobj.next(value)
   }
 
   constructor(private httpService:HttpService) { }
-
-  getAllBooksCall() {
-    return this.httpService.getAllBooks();
-  }
-
-
 }

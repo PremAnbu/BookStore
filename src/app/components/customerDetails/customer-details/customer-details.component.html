@@ -1,0 +1,104 @@
+<div class="cart-outer-cnt">
+    <br>
+    <div class="count-cnt">
+        <span><b>My cart()</b></span>
+        <div class="loc-icon-cnt">
+            <span class="loc-icon"> 
+                <mat-icon svgIcon="location-icon"></mat-icon>
+                Premkumar,Sillarahalli,No... 
+                <mat-icon svgIcon="drop-down-icon"></mat-icon>
+            </span>
+        </div>
+    </div>
+    <br>
+    <div class="img-cnt">
+        <div class="content">
+            <img [src]="cartList.imagePath" alt="">
+            <div class="cart-detail">
+                <span class="booktitle">{{cartList.title}}</span>
+                <span style="color: #818181;">{{cartList.author}}</span>
+                <div class="rating-cnt">
+                    <span class="sellingprice">Rs.{{cartList.price}}
+                        <span class="originalprice">Rs.1999</span>
+                    </span>
+                    <div class="count">
+                        <span class="symbol" (click)="decreaseCount(cartList)">-</span> 
+                        <span class="countvalue">{{cartList.quantity}}</span> 
+                        <span class="symbol"  (click)="increaseCount(cartList)">+</span>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <!-- <button class="button" mat-raised-button color="primary">PLACE ORDER</button> -->
+    </div>
+</div>
+
+<div class="address-detail">
+    <div class="address-header">
+        <span>Customer Details</span>
+        <button mat-stroked-button color="warn">Add New Adderss</button>
+    </div>
+    <div class="customer-address">
+            <div class="name-mobile-cnt">
+                <div class="field-cnt">
+                    <div class="value">Full Name</div>
+                    <div>
+                        <input type="text" class="ip" placeholder="eg: abc" class="input-cnt">
+                    </div>
+                </div>
+                <div class="field-cnt">
+                    <div class="value">Mobile Number</div>
+                    <div><input type="tel" class="ip" placeholder="eg: 1234567890" class="input-cnt"></div>
+                </div>
+            </div>
+            <div class="address-cnt">
+                <div class="value">Address</div>
+                <textarea class="address-ip" placeholder="Enter your address here"></textarea>
+            </div>
+            <div class="city-town">
+                <div class="field-cnt">
+                    <div class="value">city/town</div>
+                    <div><input type="text" class="ip" placeholder="eg: Bengaluru" class="input-cnt"></div>
+                </div>
+                <div class="field-cnt">
+                    <div class="value">State</div>
+                    <div><input type="tel" class="ip" placeholder="eg: Karnataka" class="input-cnt"></div>
+                </div>
+            </div>
+            <div class="type">
+                <div class="value">Type</div>
+                <div class="type-list">
+                    <div><input type="radio" name="type">Home</div>
+                    <div><input type="radio" name="type">Work</div>
+                    <div><input type="radio" name="type">Other</div>  
+                </div>
+            </div>
+    </div>
+    <div class="continue">
+        <button mat-raised-button color="primary" *ngIf="order" class="continue-btn" (click)="orderSummery()">CONTINUE</button>
+    </div>
+</div>
+<br>
+<div class="cart-outer-cnt">
+<div class="address-header"><span>Order Summery</span></div>
+<div *ngIf="!order">
+    <div class="img-cnt">
+        <div class="content">
+            <img [src]="cartList.imagePath" alt="">
+            <div class="cart-detail">
+                <span class="booktitle">{{cartList.title}}</span>
+                <span style="color: #818181;">{{cartList.author}}</span>
+                <div class="rating-cnt">
+                    <span class="sellingprice">Rs.{{cartList.price}}
+                    <span class="originalprice">Rs.1999</span>
+                    </span>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <div class="continue">
+        <button mat-raised-button color="primary" class="continue-btn">CHECKOUT</button>
+    </div>
+</div>
+
+

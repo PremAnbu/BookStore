@@ -18,9 +18,8 @@ export class BooksComponent implements OnInit {
   }
 
   handleBook(book:BookObject){
-    this.bookService.changeState(book)
-     this.router.navigate(["/dashboard/bookDetail"])
-
+    // this.bookService.changeState(book)
+     this.router.navigate([`/bookDetail`,book.bookId])
   }
 
 }

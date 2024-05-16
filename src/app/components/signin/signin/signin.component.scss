@@ -1,0 +1,32 @@
+.signup-form-cnt form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 5%;
+}
+
+
+.input {
+    width: 300px;
+    padding: 8px; 
+    margin-bottom: 10px; 
+    border: 2px solid rgb(147, 143, 143);
+    border-radius: 5px; 
+}
+
+.signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.mat-error {
+    font-size: smaller; 
+  }
+  

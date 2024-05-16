@@ -13,8 +13,15 @@
     font-weight: bold;
 }
 .sort-item{
-    border: 1px solid blueviolet;
     margin: 1.564% 14% 0% 0%;
+    border: 2px solid rgb(212, 210, 210);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.sort-item mat-icon{
+    // padding-top: 5px;
 }
 .books{
    display: flex;

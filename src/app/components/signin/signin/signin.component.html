@@ -1,1 +1,24 @@
-<p>signin works!</p>
+<div class="signup-form-cnt">
+    <form [formGroup]="signinForm">
+        <label><b>Full Name</b></label>
+        <input type="text" class="input" placeholder="Enter Name" formControlName="fullName">
+        <mat-error *ngIf="signupControl['fullName'].invalid && (signupControl['fullName'].dirty || signupControl['fullName'].touched)">Full name is required</mat-error>
+
+        <label class="labels"><b>Email Id</b></label>
+        <input type="email" class="input" placeholder="Enter Email" formControlName="email">
+        <mat-error *ngIf="signupControl['email'].invalid && (signupControl['email'].dirty || signupControl['email'].touched)">Email is required</mat-error>
+        <mat-error *ngIf="signupControl['email'].hasError('email') && (signupControl['email'].dirty || signupControl['email'].touched)">Invalid email format</mat-error>
+
+        <label class="labels"><b>Password</b></label>
+        <input type="password" class="input" placeholder="Enter Password" formControlName="password">
+        <mat-error *ngIf="signupControl['password'].invalid && (signupControl['password'].dirty || signupControl['password'].touched)">Password is required</mat-error>
+        <mat-error *ngIf="signupControl['password'].hasError('minlength') && (signupControl['password'].dirty || signupControl['password'].touched)">Password should contain at least 6 characters</mat-error>
+
+        <label class="labels"><b>Mobile Number</b></label>
+        <input type="text" class="input" placeholder="Enter Mobile Number" formControlName="mobileNumber">
+        <mat-error *ngIf="signupControl['mobileNumber'].invalid && (signupControl['mobileNumber'].dirty || signupControl['mobileNumber'].touched)">Mobile number is required</mat-error>
+        <mat-error *ngIf="signupControl['mobileNumber'].hasError('pattern') && (signupControl['mobileNumber'].dirty || signupControl['mobileNumber'].touched)">Mobile number should start with 6789 and be exactly 10 digits long</mat-error>
+
+        <button type="submit" class="signup-button" (click)="handleSignup()">Signup</button>
+    </form>
+</div>
