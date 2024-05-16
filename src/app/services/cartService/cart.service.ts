@@ -17,16 +17,18 @@ export class CartService {
 
   constructor(private httpService:HttpService) { }
 
-  addCartApiCall(bookId:number,quantity:number)
+  addCartApiCall(bookId:number,bookQuantity:number)
   {
-    return this.httpService.addCart(bookId,quantity)
+    return this.httpService.addCart(bookId,bookQuantity)
   }
   getAllCartApiCall()
   {
     return this.httpService.getAllCart();
   }
-  updateQuantityCall(bookId:number,quantity:number){
-    return this.httpService.updateQuantity(bookId,quantity);
+  updateQuantityCall(bookId:number,bookQuantity:number){
+    return this.httpService.updateQuantity(bookId,bookQuantity);
   }
- 
+  removeCartCall(cartId:number){
+    return this.httpService.removeCart(cartId);
+  }
 }

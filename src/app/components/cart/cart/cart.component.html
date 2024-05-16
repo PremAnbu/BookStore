@@ -23,8 +23,9 @@
                     </span>
                     <div class="count">
                         <span class="symbol" (click)="decreaseCount(book)">-</span> 
-                        <span class="countvalue">{{book.quantity}}</span> 
+                        <span class="countvalue">{{book.bookQuantity}}</span> 
                         <span class="symbol"  (click)="increaseCount(book)">+</span>
+                        <span class="remove" (click)="removeCart(book)">Remove</span>
                     </div>
                 </div>
             </div>  

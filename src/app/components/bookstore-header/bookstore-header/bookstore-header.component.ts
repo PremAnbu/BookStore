@@ -18,7 +18,6 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 })
 export class BookstoreHeaderComponent implements OnInit {
   loginclick: boolean = false;
-  // booksList: BookObject[]=[]
   
   constructor(
     private domSanitizer: DomSanitizer,
@@ -36,15 +35,13 @@ export class BookstoreHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.getAllBooks().subscribe(res => {
-      console.log(res.data);  
-      this.bookService.changeState(res.data)
-    })
-
-    this.httpService.getAllCart().subscribe(res => {
-      console.log(res.data);  
-      this.cartService.changeState(res.data)
-    })
-
+      this.bookService.changeState(res.data);
+    });
+    if (localStorage.getItem('authToken') != null) {
+      this.httpService.getAllCart().subscribe(res => {
+        this.cartService.changeState(res.data);
+      });
+    }
   }
 
   login() {

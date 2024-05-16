@@ -20,6 +20,5 @@ export class BooksContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookService.currentBookState .subscribe(res=>this.booksList=res)
-
   }
 }

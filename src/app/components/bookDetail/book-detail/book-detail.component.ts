@@ -1,4 +1,5 @@
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { DataService } from './../../../services/dataService/data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/services/bookService/book.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
@@ -12,63 +13,98 @@ import { cartObject } from 'src/assets/cartObjectInterface';
 })
 export class BookDetailComponent implements OnInit {
 
-  bookDetail!: any;
-  cartDetail!: cartObject;
-  addedToBag:boolean=false;
-  count:number=1;
+  bookDetail: any;
+  cartDetail: any;
+  addedToBag: boolean = false;
+  count: number = 1;
 
-  constructor(private bookService: BookService,private cartService:CartService,private route:ActivatedRoute) {
+  constructor(private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService) {}
 
-   }
-
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.bookService.currentBookState.subscribe(result1 => {
-      this.route.params.subscribe((result2)=>
-        {
-          this.bookDetail=result1.filter((e:BookObject) => e.bookId==result2['bookId'])[0]
-        })
+      this.route.params.subscribe((result2) => {
+        this.bookDetail = result1.filter((e: BookObject) => e.bookId == result2['bookId'])[0];
+        console.log(this.bookDetail);
+      })
     });
-    this.cartService.currentCartState.subscribe(result1 => {
-      this.route.params.subscribe((result2)=>
-        {
-          this.cartDetail=result1.filter((e:any) => e.bookId==result2['bookId'])[0]
-        })
-        if(this.cartDetail.quantity>0){
-            this.count=this.cartDetail.quantity
-            this.addedToBag=true
+    if (localStorage.getItem('authToken') != null) {
+      this.cartService.currentCartState.subscribe(result1 => {
+        this.route.params.subscribe((result2) => {
+          this.cartDetail = result1.filter((e: any) => e.bookId == result2['bookId'])[0];
+          if (this.cartDetail && this.cartDetail.bookQuantity > 0) {
+            this.count = this.cartDetail.bookQuantity;
+            this.addedToBag = true;
+          }
+        });
+      });
+    } else {
+      this.route.params.subscribe((result2) => {
+        const existingCartItem = this.dataService.cartItems.find((cartItem: any) => cartItem.bookId == result2['bookId']);
+        if (existingCartItem && existingCartItem.bookQuantity > 0) {
+          this.cartDetail = existingCartItem;
+          this.count = this.cartDetail.bookQuantity;
+          this.addedToBag = true;
+        } else {
+          this.dataService.addToCart(this.cartDetail = this.bookDetail);
+          this.cartDetail = this.dataService.cartItems.find((e: any) => e.bookId == result2['bookId']);
+          if (this.cartDetail && this.cartDetail.bookQuantity > 0) {
+            this.count = this.cartDetail.bookQuantity;
+            this.addedToBag = true;
+          }
         }
-    });
+      });
+    }
   }
-  addToBag() {
-      if(this.addedToBag==false){
-        this.cartService.addCartApiCall(this.bookDetail.bookId,1).subscribe(res=>{
-          console.log(res); 
-        })
-      }
-      this.addedToBag = true;
 
+  addToBag() {
+    if (!this.addedToBag) {
+      if (localStorage.getItem('authToken') != null) {
+        this.cartService.addCartApiCall(this.bookDetail.bookId, 1).subscribe(res => {
+          this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+            this.cartService.changeState(updatedCartData.data);
+          });
+        });
+      }
+    }
+    this.addedToBag = true;
   }
-      
+  
+
   increaseCount() {
     this.count++;
-    if(localStorage.getItem.length>1){
-    this.cartService.updateQuantityCall(this.bookDetail.bookId,this.count).subscribe(res =>{
-      console.log(res);
-    },err => console.log(err)
-    )
+    if (localStorage.getItem('authToken') != null) {
+      this.cartService.updateQuantityCall(this.bookDetail.bookId, this.count).subscribe(res => {
+        this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+          this.cartService.changeState(updatedCartData.data);
+        });
+      }, err => console.log(err))
+    } else {
+      this.dataService.cartItems.forEach((cartItem: cartObject) => {
+        if (cartItem.bookId == this.cartDetail.bookId) {
+          cartItem.bookQuantity = this.count;
+        }
+      });
+    }
   }
-  }
-
+  
   decreaseCount() {
     if (this.count > 1) {
-      this.count--
-      if(localStorage.getItem.length>1){
-      this.cartService.updateQuantityCall(this.bookDetail.bookId,this.count).subscribe(res =>{
-        console.log(res);
-      },err => console.log(err)
-      )
-    }
+      this.count--;
+      if (localStorage.getItem('authToken') != null) {
+        this.cartService.updateQuantityCall(this.bookDetail.bookId, this.count).subscribe(res => {
+          this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+            this.cartService.changeState(updatedCartData.data);
+          });
+        }, err => console.log(err))
+      } else {
+        this.dataService.cartItems.forEach((cartItem: cartObject) => {
+          if (cartItem.bookId === this.cartDetail.bookId) {
+            cartItem.bookQuantity = this.count;
+          }
+        });
+      }
     }
   }
+  
 
 }
