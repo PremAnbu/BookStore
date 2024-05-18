@@ -23,7 +23,7 @@
 </div>
 
 <mat-menu #Profile="matMenu">
-    <div class="profile-history">
+    <div class="profile-history" *ngIf="loginLogOut">
         <span><b>Welcome</b></span>
         <span>To access account and manage orders</span>
         <div class="login-signup">
@@ -31,8 +31,17 @@
         </div>
         <div>         <hr>
         </div>
-        <div class="order-icon">My Orders</div>
-        <div class="heart-icon">&#x2764; Wishlist</div>
+        <div class="order-icon" routerLink="/orderList">My Orders</div>
+        <div class="heart-icon" routerLink="/wishList">&#x2764; Wishlist</div>
+    </div>
+    <div *ngIf="!loginLogOut">
+        <div class="login-signin">
+            <span>Hello Premkumar,</span>
+            <div class="profile-icon">Profile</div>
+            <div class="order-icon" routerLink="/orderList">My Orders</div>
+            <div class="heart-icon" routerLink="/wishList">&#x2764;My Wishlist</div>
+            <button mat-button (click)="logout()">LOGOUT</button>
+        </div>
     </div>
 </mat-menu>
 

@@ -10,6 +10,8 @@ import { CART_ICON, PROFILE_ICON, SEARCH_ICON } from 'src/assets/svg-icons';
 import { LoginSignupComponent } from '../../loginSignup/login-signup/login-signup.component';
 import { BookService } from 'src/app/services/bookService/book.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
+import { DataService } from 'src/app/services/dataService/data.service';
+import { cartObject } from 'src/assets/cartObjectInterface';
 
 @Component({
   selector: 'app-bookstore-header',
@@ -18,7 +20,8 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 })
 export class BookstoreHeaderComponent implements OnInit {
   loginclick: boolean = false;
-  
+  CartValue!: cartObject[];
+  loginLogOut: boolean=true;
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
@@ -39,8 +42,10 @@ export class BookstoreHeaderComponent implements OnInit {
     });
     if (localStorage.getItem('authToken') != null) {
       this.httpService.getAllCart().subscribe(res => {
+        this.CartValue=res.data;
         this.cartService.changeState(res.data);
       });
+      this.loginLogOut=false
     }
   }
 
@@ -48,6 +53,10 @@ export class BookstoreHeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginSignupComponent, { width: '720px', height: '480px' });
     dialogRef.afterClosed().subscribe(result => {});
     this.loginclick = !this.loginclick;
+  }
+  logout(){
+    localStorage.clear();
+    // this.router.navigate([""])
   }
 
   handleCart() {

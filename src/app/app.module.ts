@@ -25,6 +25,8 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { LoginSignupComponent } from './components/loginSignup/login-signup/login-signup.component';
 import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customerDetails/customer-details/customer-details.component';
+import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
+import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 
 
 
@@ -41,6 +43,8 @@ import { CustomerDetailsComponent } from './components/customerDetails/customer-
     LoginSignupComponent,
     CartComponent,
     CustomerDetailsComponent,
+    WishlistComponent,
+    OrderlistComponent,
   ],
   imports: [
     BrowserModule,

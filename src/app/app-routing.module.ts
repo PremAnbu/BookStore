@@ -5,6 +5,8 @@ import { BooksContainerComponent } from './components/booksContainer/books-conta
 import { BookDetailComponent } from './components/bookDetail/book-detail/book-detail.component';
 import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customerDetails/customer-details/customer-details.component';
+import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
+import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
       {
         path:'customerAdderss/:bookId',
         component:CustomerDetailsComponent
+      },
+      {
+        path:'wishList',
+        component:WishlistComponent
+      },
+      {
+        path:'orderList',
+        component:OrderlistComponent
       },
     ]
   }
