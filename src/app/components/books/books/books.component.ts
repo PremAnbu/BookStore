@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/bookService/book.service';
+import { CartService } from 'src/app/services/cartService/cart.service';
+import { DataService } from 'src/app/services/dataService/data.service';
+import { HttpService } from 'src/app/services/httpService/http.service';
 import { BookObject } from 'src/assets/BookObjectInterface';
+import { cartObject } from 'src/assets/cartObjectInterface';
 
 @Component({
   selector: 'app-books',
@@ -10,15 +14,63 @@ import { BookObject } from 'src/assets/BookObjectInterface';
 })
 export class BooksComponent implements OnInit {
 
-  @Input() BookObjectList !:any[]
+  @Input() BookObjectList!: BookObject[];
+  CartValue!: cartObject[];
+  cartList!: cartObject[];
+  tempList!: cartObject[];
 
-  constructor(private bookService: BookService, private router:Router) { }
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private dataService: DataService,
+    private httpService: HttpService
+  ) { }
 
   ngOnInit(): void {
+    this.tempList = this.dataService.cartItems.filter(res => res.bookQuantity >= 1);
+
+    if (localStorage.getItem('authToken') != null) {
+      this.httpService.getAllCart().subscribe(
+        res => {
+          this.cartList = res.data.filter((ele: cartObject) => ele.bookQuantity > 0);
+          console.log('Server Cart:', this.cartList);
+          
+          // Merge tempList (local cart) with cartList (server cart)
+          this.cartList = this.updateCart(this.tempList, this.cartList);
+          // window.location.reload();
+          console.log('Updated Cart:', this.cartList);
+        },
+        err => console.log(err)
+      );
+    } else {
+      // If no auth token, just use the local cart items
+      this.cartList = [...this.tempList];
+    }
   }
 
-  handleBook(book:BookObject){
-     this.router.navigate([`/bookDetail`,book.bookId])
+  updateCart(tempCart: any[], serverCart: any[]): cartObject[] {
+    for (const tempItem of tempCart) {
+      const serverItem = serverCart.find(item => item.bookId === tempItem.bookId);
+      if (serverItem) {
+        // Ensure serverItem.bookQuantity is not undefined
+        serverItem.bookQuantity += tempItem.bookQuantity;
+        this.cartService.updateQuantityCall(serverItem.bookId, serverItem.bookQuantity).subscribe(
+          res => console.log('Updated Quantity:', res),
+          err => console.log(err)
+        );
+      } else {
+        serverCart.push(tempItem);
+        this.cartService.addCartApiCall(tempItem.bookId, tempItem.bookQuantity).subscribe(
+          res => console.log('Added to Cart:', res),
+          err => console.log(err)
+        );
+      }
+    }
+    return serverCart;
+  }
+
+  handleBook(book: BookObject): void {
+    this.router.navigate([`/bookDetail`, book.bookId]);
   }
 
 }

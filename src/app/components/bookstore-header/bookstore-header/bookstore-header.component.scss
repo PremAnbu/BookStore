@@ -88,6 +88,23 @@
     margin-bottom: 5px;
     color: red;
 }
+.login-signin{
+    // width: 100%;
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    // align-items: center;
+    margin: 10%;
+    flex-direction: column;
+    cursor: pointer;
+}
+.login-signin button{
+    border: 1px solid red;
+    padding: 0px 10px;
+    border-radius: 5px;
+    // margin-bottom: 5px;
+    color: red;
+}
 
 @media only screen and (min-width: 300px) and (max-width: 500px) {
     .bookstore-icon span {
