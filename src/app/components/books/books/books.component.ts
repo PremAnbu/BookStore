@@ -34,16 +34,12 @@ export class BooksComponent implements OnInit {
         res => {
           this.cartList = res.data.filter((ele: cartObject) => ele.bookQuantity > 0);
           console.log('Server Cart:', this.cartList);
-          
-          // Merge tempList (local cart) with cartList (server cart)
           this.cartList = this.updateCart(this.tempList, this.cartList);
-          // window.location.reload();
           console.log('Updated Cart:', this.cartList);
         },
         err => console.log(err)
       );
     } else {
-      // If no auth token, just use the local cart items
       this.cartList = [...this.tempList];
     }
   }
@@ -52,7 +48,6 @@ export class BooksComponent implements OnInit {
     for (const tempItem of tempCart) {
       const serverItem = serverCart.find(item => item.bookId === tempItem.bookId);
       if (serverItem) {
-        // Ensure serverItem.bookQuantity is not undefined
         serverItem.bookQuantity += tempItem.bookQuantity;
         this.cartService.updateQuantityCall(serverItem.bookId, serverItem.bookQuantity).subscribe(
           res => console.log('Updated Quantity:', res),
