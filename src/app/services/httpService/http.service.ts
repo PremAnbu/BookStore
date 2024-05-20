@@ -46,4 +46,20 @@ export class HttpService {
   removeCart(cartId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/ShoppingCart/DeleteCart?cartId=${cartId}`, { headers: this.authHeader });
   }
+
+  addAddress(body:any,){
+    return this.http.post<any>(`${this.apiUrl}/Address`, body, { headers: this.authHeader });
+  }
+  getAddress(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Address/GetAddress`, { headers: this.authHeader });
+  }
+  addOrder(body:any,){
+    return this.http.post<any>(`${this.apiUrl}/Order`, body, { headers: this.authHeader });
+  }
+  getAllOrder(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Order/GetOrder`, { headers: this.authHeader });
+  }
+  removeAddress(addressId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/Address/DeleteAddress?addressId=${addressId}`, { headers: this.authHeader });
+  }
 }

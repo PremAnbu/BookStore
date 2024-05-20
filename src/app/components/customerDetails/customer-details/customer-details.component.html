@@ -32,51 +32,73 @@
         <!-- <button class="button" mat-raised-button color="primary">PLACE ORDER</button> -->
     </div>
 </div>
-
 <div class="address-detail">
+    <div class="list-of-adderss">
     <div class="address-header">
         <span>Customer Details</span>
-        <button mat-stroked-button color="warn">Add New Adderss</button>
+        <button mat-stroked-button color="warn" (click)="editAddress(emptyAddress)">Add New Adderss</button>
     </div>
+    <div class="address-main" *ngFor="let address of addressList" >
+    <div class="old-address">
+       <div>{{address.name}}</div>
+       <div>{{address.address}}</div>
+       <div>{{address.city}}, {{address.State}}</div>
+       <div>{{address.mobileNumber}}</div>
+    </div>
+    <div class="address-btn">
+        <button mat-raised-button color="primary" (click)="editAddress(address)" class="continue-btn" >EDIT ADDRESS</button>
+        <button mat-raised-button color="primary" (click)="removeAddress(address.addressId)" class="continue-btn" >REMOVE ADDRESS</button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="address-detail" *ngIf="!editaddress">
+    <div class="address-header">
+        <span>Customer Details</span>
+        <!-- <button mat-stroked-button color="warn">Add New Adderss</button> -->
+    </div>
+    <form [formGroup]="addressForm">
     <div class="customer-address">
             <div class="name-mobile-cnt">
                 <div class="field-cnt">
                     <div class="value">Full Name</div>
                     <div>
-                        <input type="text" class="ip" placeholder="eg: abc" class="input-cnt">
+                        <input type="text" class="ip" formControlName="name" placeholder="eg:abc" class="input-cnt" [value]="editadd.name">
                     </div>
                 </div>
                 <div class="field-cnt">
                     <div class="value">Mobile Number</div>
-                    <div><input type="tel" class="ip" placeholder="eg: 1234567890" class="input-cnt"></div>
+                    <div><input type="tel" class="ip" placeholder={{editadd.mobileNumber}} class="input-cnt" formControlName="mobileNumber" [value]="editadd.mobileNumber"></div>
                 </div>
             </div>
             <div class="address-cnt">
                 <div class="value">Address</div>
-                <textarea class="address-ip" placeholder="Enter your address here"></textarea>
+                <textarea class="address-ip" placeholder={{editadd.address}} formControlName="address" [value]="editadd.address"></textarea>
             </div>
             <div class="city-town">
                 <div class="field-cnt">
                     <div class="value">city/town</div>
-                    <div><input type="text" class="ip" placeholder="eg: Bengaluru" class="input-cnt"></div>
+                    <div><input type="text" class="ip" placeholder={{editadd.city}} class="input-cnt" formControlName="city" [value]="editadd.city"></div>
                 </div>
                 <div class="field-cnt">
                     <div class="value">State</div>
-                    <div><input type="tel" class="ip" placeholder="eg: Karnataka" class="input-cnt"></div>
+                    <div><input type="tel" class="ip" placeholder={{editadd.state}} class="input-cnt" formControlName="state" [value]="editadd.state"></div>
                 </div>
             </div>
             <div class="type">
                 <div class="value">Type</div>
                 <div class="type-list">
-                    <div><input type="radio" name="type">Home</div>
-                    <div><input type="radio" name="type">Work</div>
-                    <div><input type="radio" name="type">Other</div>  
+                    <div><input type="radio" name="type" formControlName="type">Home</div>
+                    <div><input type="radio" name="type" formControlName="type">Work</div>
+                    <div><input type="radio" name="type" formControlName="type">Other</div>  
                 </div>
             </div>
     </div>
     <div class="continue">
-        <button mat-raised-button color="primary" *ngIf="order" class="continue-btn" (click)="orderSummery()">CONTINUE</button>
+        <button mat-raised-button color="primary" *ngIf="order" class="continue-btn" (click)="orderSummery()" (click)="handleaddress()">CONTINUE</button>
     </div>
+</form>
 </div>
 <br>
 <div class="cart-outer-cnt">

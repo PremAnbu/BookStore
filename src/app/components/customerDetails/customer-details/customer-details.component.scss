@@ -177,6 +177,27 @@ padding: 2% 0%;
     border-radius: 5px;
  }
 }
+.address-main{
+   display: flex;
+//    border: 1px solid rgb(190, 190, 190) ;
+}
+.address-btn{
+    display: flex;
+    // border: 2px solid green;
+    width: 40%;
+    justify-content: end;
+    align-items: end;
+}
+.address-btn button{
+
+    padding: 0% 2% 0% 2%;
+    height: fit-content;
+}
+.old-address{
+    padding: 0% 3% 2% 6%;
+    // border: 1px solid red;   
+    width: 50%;
+}
 
 .customer-address
 {
