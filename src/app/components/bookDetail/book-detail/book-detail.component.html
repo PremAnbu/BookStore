@@ -1,6 +1,6 @@
 <div class="bookdetails-main-cnt">
     <div class="back-to-dashbaord">
-      <a routerLink="/books"><strong>Home</strong><span> /Books </span></a> 
+      <a><strong routerLink="/books">Home</strong><span> /Books </span></a> 
     </div>
     
     <div *ngIf="bookDetail" class="book-details-cnt">
@@ -15,8 +15,9 @@
                   <span class="number-of-books">{{ count }}</span>
                   <span class="symbol" (click)="increaseCount()">+</span>
                 </div>
-                <button mat-flat-button class="wishlist-button"> WISHLIST</button>
-            </div>
+                <button *ngIf="!wishListOption" mat-flat-button class="wishlist-button" (click)="handleWishList(bookDetail.bookId)"> WISHLIST</button>
+                <span *ngIf="wishListOption" class="wishlist-button-disable"> DISABLE</span>
+               </div>
         </div>
 
         <div class="book-details">

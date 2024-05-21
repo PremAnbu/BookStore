@@ -1,0 +1,42 @@
+.order-main-cnt{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    // border: 2px solid red;
+}
+.order-img{
+    padding-top: 3%;
+}
+.order-detail{
+    width: 50%;
+    border: 1px solid rgb(181, 179, 179);
+}
+.order-detail-header{
+    border: 1px solid rgb(208, 207, 207);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    font-size: medium;
+    padding: 1.5% 0% 1.5% 0%;
+}
+.user-detail-main{
+    border: 1px solid rgb(212, 211, 211);
+    display: flex;  
+}
+.details{
+    border: 1px solid rgb(219, 219, 218);
+    width: 33.3%;
+}
+.details span{
+    font-size: small;
+    padding: 7% 0% 7% 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.continue-btn{
+    font-size: 13px;
+    margin-top: 20px;
+}

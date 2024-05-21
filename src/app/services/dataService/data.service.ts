@@ -7,11 +7,15 @@ import { cartObject } from 'src/assets/cartObjectInterface';
 export class DataService {
   
   cartItems:cartObject[]=[]
+  wishListItems:any[]=[]
 
   constructor() { }
   addToCart(book: cartObject) {
     this.cartItems.push(book);
     console.log(this.cartItems);
-    
+  }
+  addToWishList(wishList: any) {
+    this.wishListItems.push(wishList);
+    console.log(this.wishListItems);
   }
 }

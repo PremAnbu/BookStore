@@ -72,6 +72,7 @@
 .back-to-dashbaord a{
     text-decoration: none;
     padding: 1.564% 0.700% 0.800% 10%;
+    cursor: pointer;
 
 }
 
@@ -146,7 +147,13 @@
     height: 30px;
 
 }
-
+.wishlist-button-disable{
+    background-color: gray;
+    color: white;
+    width: 260%;
+    height: 30px;
+    padding: 7px 20px 0px 20px;
+}
 .wishlist-button::before {
     font-size: 24px; 
     vertical-align: middle;

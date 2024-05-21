@@ -7,6 +7,7 @@ import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customerDetails/customer-details/customer-details.component';
 import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
+import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path:'orderList',
         component:OrderlistComponent
+      },
+      {
+        path:'orderPlaced/:orderId',
+        component:OrderplacedComponent
       },
     ]
   }

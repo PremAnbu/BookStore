@@ -27,6 +27,7 @@ import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customerDetails/customer-details/customer-details.component';
 import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
+import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
 
 
 
@@ -45,6 +46,7 @@ import { OrderlistComponent } from './components/orderList/orderlist/orderlist.c
     CustomerDetailsComponent,
     WishlistComponent,
     OrderlistComponent,
+    OrderplacedComponent,
   ],
   imports: [
     BrowserModule,
