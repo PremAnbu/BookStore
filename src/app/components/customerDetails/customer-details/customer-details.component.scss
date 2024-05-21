@@ -1,3 +1,11 @@
+.back-to-dashbaord a{
+    text-decoration: none;
+    padding:10%;
+    cursor: pointer;
+}
+.back-to-dashbaord {
+    padding: 2% 0% 1% 0%;
+}
 .cart-outer-cnt
 {
     // display: flex;
@@ -181,6 +189,10 @@ padding: 2% 0%;
    display: flex;
 //    border: 1px solid rgb(190, 190, 190) ;
 }
+.address-cnt textarea{
+    resize: none;
+    height: 60px;
+}
 .address-btn{
     display: flex;
     // border: 2px solid green;
@@ -192,6 +204,7 @@ padding: 2% 0%;
 
     padding: 0% 2% 0% 2%;
     height: fit-content;
+    font-size: 10px;
 }
 .old-address{
     padding: 0% 3% 2% 6%;

@@ -5,6 +5,7 @@ import { BookService } from 'src/app/services/bookService/book.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { BookObject } from 'src/assets/BookObjectInterface';
 import { cartObject } from 'src/assets/cartObjectInterface';
+import { HttpService } from 'src/app/services/httpService/http.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -17,8 +18,9 @@ export class BookDetailComponent implements OnInit {
   cartDetail: any;
   addedToBag: boolean = false;
   count: number = 1;
+  wishListOption :boolean=false
 
-  constructor(private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService) {}
+  constructor(private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService,private httpService:HttpService) {}
 
   ngOnInit(): void {
     this.bookService.currentBookState.subscribe(result1 => {
@@ -54,6 +56,17 @@ export class BookDetailComponent implements OnInit {
         }
       });
     }
+    if (this.dataService.wishListItems.some(item => item.bookId === this.cartDetail.bookId)) {
+      this.wishListOption = true;
+    }
+    
+    this.httpService.getAllWishList().subscribe(res => {
+      if (res.data.some((item: any) => item.bookId === this.cartDetail.bookId)) {
+        this.wishListOption = true;
+      }
+    });
+    
+
   }
 
   addToBag() {
@@ -105,6 +118,19 @@ export class BookDetailComponent implements OnInit {
       }
     }
   }
-  
+  handleWishList(bookId:number){
+    if (localStorage.getItem('authToken') != null) {
+       console.log(bookId);
+       this.httpService.addWishList(this.cartDetail.bookId).subscribe(res=>{
+        console.log(res); 
+       })
+       this.wishListOption=true
+  }else{
+    const alreadyInWishList = this.dataService.wishListItems.some(item => item.bookId === this.bookDetail.bookId);
+   if(!alreadyInWishList)
+    this.dataService.addToWishList(this.bookDetail)
+        this.wishListOption=true
+  }
+}
 
 }

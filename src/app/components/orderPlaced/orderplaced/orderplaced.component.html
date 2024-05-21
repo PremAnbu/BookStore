@@ -1,0 +1,17 @@
+<div class="order-main-cnt">
+    <div class="order-img">
+        <img src="assets/OrderPlaced.jpg" alt="">
+    </div>
+    <div class="order-detail">
+       <div class="order-detail-header">
+            <span class="email">Email us</span><span>Contact us</span><span>Address</span>
+       </div>
+       <div class="user-detail-main">
+        <div class="details"> <span>{{orderDetail[0].email}}</span></div>
+        <div class="details"> <span>{{orderDetail[0].addressMobileNumber}}</span></div>
+        <div class="details"> <span>{{orderDetail[0].address}}, {{orderDetail[0].city}}, {{orderDetail[0].state}}</span></div>
+       </div>
+    </div>
+    <button mat-raised-button color="primary" class="continue-btn" routerLink="/books">CONTINUE SHOPPING</button>
+
+</div>
