@@ -28,6 +28,7 @@ import { CustomerDetailsComponent } from './components/customerDetails/customer-
 import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
+import { SearchPipe } from './pipe/search.pipe';
 
 
 
@@ -47,6 +48,7 @@ import { OrderplacedComponent } from './components/orderPlaced/orderplaced/order
     WishlistComponent,
     OrderlistComponent,
     OrderplacedComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

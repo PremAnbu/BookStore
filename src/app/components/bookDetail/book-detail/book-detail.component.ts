@@ -6,6 +6,9 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 import { BookObject } from 'src/assets/BookObjectInterface';
 import { cartObject } from 'src/assets/cartObjectInterface';
 import { HttpService } from 'src/app/services/httpService/http.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { STAR_ICON, STAR_ICON_BLACK, STAR_ICON_YELLOW } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-book-detail',
@@ -20,7 +23,11 @@ export class BookDetailComponent implements OnInit {
   count: number = 1;
   wishListOption :boolean=false
 
-  constructor(private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService,private httpService:HttpService) {}
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService,private httpService:HttpService) {
+    iconRegistry.addSvgIconLiteral("star_icon", sanitizer.bypassSecurityTrustHtml(STAR_ICON)),
+    iconRegistry.addSvgIconLiteral("star_icon_black", sanitizer.bypassSecurityTrustHtml(STAR_ICON_BLACK)),
+    iconRegistry.addSvgIconLiteral("star_icon_yellow", sanitizer.bypassSecurityTrustHtml(STAR_ICON_YELLOW))
+  }
 
   ngOnInit(): void {
     this.bookService.currentBookState.subscribe(result1 => {
@@ -61,12 +68,10 @@ export class BookDetailComponent implements OnInit {
     }
     
     this.httpService.getAllWishList().subscribe(res => {
-      if (res.data.some((item: any) => item.bookId === this.cartDetail.bookId)) {
+      if (res.data.some((item: any) => item.bookId === this.bookDetail.bookId)) {
         this.wishListOption = true;
       }
     });
-    
-
   }
 
   addToBag() {
@@ -121,7 +126,7 @@ export class BookDetailComponent implements OnInit {
   handleWishList(bookId:number){
     if (localStorage.getItem('authToken') != null) {
        console.log(bookId);
-       this.httpService.addWishList(this.cartDetail.bookId).subscribe(res=>{
+       this.httpService.addWishList(bookId).subscribe(res=>{
         console.log(res); 
        })
        this.wishListOption=true

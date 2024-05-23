@@ -80,15 +80,16 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   handleaddress() {
-    this.editaddress = false;
     if (this.addressForm.invalid) {
       console.log('Form is invalid');
       return;
     }
 
     const userData = this.addressForm.value;
+    
 
     if (this.editadd && this.editadd.addressId) {
+      userData.addressId=this.editadd.addressId;
       this.httpService.updataAddress(userData).subscribe(
         (res:any) => {
           console.log(res);
@@ -106,6 +107,7 @@ export class CustomerDetailsComponent implements OnInit {
         err => console.log(err)
       );
     }
+    this.editaddress = true;
   }
 
   orderAddress(address: any) {

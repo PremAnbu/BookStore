@@ -22,6 +22,8 @@ export class BookstoreHeaderComponent implements OnInit {
   loginclick: boolean = false;
   CartValue!: cartObject[];
   loginLogOut: boolean=true;
+  searchString:string=''
+
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
@@ -29,7 +31,8 @@ export class BookstoreHeaderComponent implements OnInit {
     private router: Router,
     private httpService: HttpService,
     private bookService: BookService,
-    private cartService: CartService
+    private cartService: CartService,
+    private dataService:DataService
   ) {
     matIconRegistry.addSvgIconLiteral("search-icon", domSanitizer.bypassSecurityTrustHtml(SEARCH_ICON));
     matIconRegistry.addSvgIconLiteral("profile-icon", domSanitizer.bypassSecurityTrustHtml(PROFILE_ICON));
@@ -62,4 +65,10 @@ export class BookstoreHeaderComponent implements OnInit {
   handleCart() {
     this.router.navigate(["/cart"]);
   }
+  handleLoginSignup(){
+    if (localStorage.getItem('authToken') != null)this.loginLogOut=false
+  }
+  handleSearchString(){
+    this.dataService.updateSearchString(this.searchString)
+ }
 }

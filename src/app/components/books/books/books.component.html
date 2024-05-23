@@ -1,5 +1,5 @@
 <div class="book-outer-container">
-    <div *ngFor="let book of BookObjectList"  class="book-container">
+    <div *ngFor="let book of BookObjectList | search : searchString"  class="book-container">
       <div class="book-image-background-container"  (click)="handleBook(book)">
         <img src="{{ book?.imagePath }}" class="book-image" />
         <!-- <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3Ae8047196-2172-4313-af0e-60107356f41a&params=version%3A0&token=1715327156_da39a3ee_338bd0822f844a6ecc126dbe1ff0ca81564c3e1b&api_key=CometServer1" class="book-image" /> -->

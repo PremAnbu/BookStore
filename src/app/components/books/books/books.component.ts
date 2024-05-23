@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BookService } from 'src/app/services/bookService/book.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { DataService } from 'src/app/services/dataService/data.service';
@@ -20,7 +21,8 @@ export class BooksComponent implements OnInit {
   tempList!: cartObject[];
   tempWishList : any[]=[]
   wishList : any[]=[]
-
+  searchString:string=''  
+  subscription!:Subscription
 
   constructor(
     private router: Router,
@@ -30,6 +32,8 @@ export class BooksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.subscription=this.dataService.currSearchString.subscribe(res=>this.searchString=res)
+
     this.tempList = this.dataService.cartItems.filter(res => res.bookQuantity >= 1);
 
     if (localStorage.getItem('authToken') != null) {

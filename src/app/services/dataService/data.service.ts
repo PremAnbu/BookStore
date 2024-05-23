@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { cartObject } from 'src/assets/cartObjectInterface';
 
 @Injectable({
@@ -9,6 +10,9 @@ export class DataService {
   cartItems:cartObject[]=[]
   wishListItems:any[]=[]
 
+  private searchString = new BehaviorSubject('');
+  currSearchString = this.searchString.asObservable();
+  
   constructor() { }
   addToCart(book: cartObject) {
     this.cartItems.push(book);
@@ -18,4 +22,7 @@ export class DataService {
     this.wishListItems.push(wishList);
     console.log(this.wishListItems);
   }
+  updateSearchString(state:string){
+    this.searchString.next(state)
+   }
 }
