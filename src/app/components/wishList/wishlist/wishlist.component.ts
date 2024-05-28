@@ -22,8 +22,8 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('authToken') != null) {
 
-  this.httpService.getAllWishList().subscribe(res=>{
-    this.wishList=res.data
+      this.httpService.getAllWishList().subscribe(res =>{
+            this.wishList=res.data
   })
   }   else {
     this.wishList = this.dataService.wishListItems;
@@ -32,6 +32,7 @@ export class WishlistComponent implements OnInit {
   removeWishList(wishListId:number,bookId:number){
     if (localStorage.getItem('authToken') != null) {
       this.httpService.removeWishList(wishListId).subscribe(res=>{
+        // this.dataService.currWishList.subscribe(res =>{
         this.httpService.getAllWishList().subscribe(res=>{
           this.wishList=res.data
         })

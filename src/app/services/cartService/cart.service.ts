@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../httpService/http.service';
 import { BehaviorSubject } from 'rxjs';
+import { DataService } from '../dataService/data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
     this.cartobj.next(value)
   }
 
-  constructor(private httpService:HttpService) { }
+  constructor(private httpService:HttpService,private dataService:DataService) { }
 
   addCartApiCall(bookId:number,bookQuantity:number)
   {

@@ -49,7 +49,7 @@
 .profile {
     display: flex;
     flex-direction: column;
-    margin-left: auto;
+    margin-left: 69%;
     color: white;
     font-size: 10px;
     gap: 5px;
@@ -60,7 +60,7 @@
 .cart {
     display: flex;
     flex-direction: column;
-    margin-left: 40px;
+    margin-left: 25px;
     color: white;
     font-size: 10px;
     gap: 5px;
@@ -114,5 +114,9 @@
 @media only screen and (min-width: 300px) and (max-width: 500px) {
     .bookstore-icon span {
         display: none;
+    }
+    .search-input {
+        // width: none;
+        // height: 28px;    
     }
 }

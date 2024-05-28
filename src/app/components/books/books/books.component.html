@@ -1,25 +1,21 @@
+<div class="book-main-cnt">
 <div class="book-outer-container">
     <div *ngFor="let book of BookObjectList | search : searchString"  class="book-container">
       <div class="book-image-background-container"  (click)="handleBook(book)">
         <img src="{{ book?.imagePath }}" class="book-image" />
-        <!-- <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3Ae8047196-2172-4313-af0e-60107356f41a&params=version%3A0&token=1715327156_da39a3ee_338bd0822f844a6ecc126dbe1ff0ca81564c3e1b&api_key=CometServer1" class="book-image" /> -->
-
-      </div>
-  
+      </div>  
       <div class="book-details">
         <span class="book-title"><strong>{{book?.title}}</strong></span>
-  
         <span class="book-author">{{book?.author}}</span>
-  
         <div class="quantity-price">
           <span class="book-rating">4.8{{book?.bookRating}} *</span>
           <span>(40)</span> 
         </div>
-  
         <div class="book-price"><b>Rs. {{book?.price}}</b> <span class="original-price">Rs. 2000</span></div>
+      </div>
     </div>
-    </div>
-  </div>
+</div>
+</div>
 
   <!-- -------------------' -->
 

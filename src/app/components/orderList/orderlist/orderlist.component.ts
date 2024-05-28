@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/dataService/data.service';
 import { HttpService } from 'src/app/services/httpService/http.service';
 
 @Component({
@@ -9,12 +10,12 @@ import { HttpService } from 'src/app/services/httpService/http.service';
 export class OrderlistComponent implements OnInit {
 
   orderList! : any[];
-  constructor(private httpService:HttpService) { }
+  constructor(private dataService:DataService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('authToken') != null) {
-      this.httpService.getAllOrder().subscribe(res=>{
-      this.orderList=res.data
+      this.dataService.currOrderList.subscribe(res=>{
+      this.orderList=res
     },err=>console.log(err))
     
   }

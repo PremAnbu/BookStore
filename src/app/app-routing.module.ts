@@ -39,7 +39,7 @@ const routes: Routes = [
         component:OrderlistComponent
       },
       {
-        path:'orderPlaced/:orderId',
+        path:'orderPlaced',
         component:OrderplacedComponent
       },
     ] 

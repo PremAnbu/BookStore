@@ -13,16 +13,16 @@
     font-weight: bold;
 }
 .sort-item{
-    margin: 1.564% 14% 0% 0%;
+    margin: 1.564% 16% 0% 0%;
     border: 2px solid rgb(212, 210, 210);
     display: flex;
     justify-content: center;
     align-items: center;
-padding-left: 10px;
+    padding-left: 10px;
 }
-.sort-item mat-icon{
+// .sort-item mat-icon{
     // padding-top: 5px;
-}
+// }
 .books{
    display: flex;
    align-items: center;

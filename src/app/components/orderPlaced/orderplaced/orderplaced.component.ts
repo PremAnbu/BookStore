@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/dataService/data.service';
 import { HttpService } from 'src/app/services/httpService/http.service';
 
 @Component({
@@ -9,19 +10,8 @@ import { HttpService } from 'src/app/services/httpService/http.service';
 })
 export class OrderplacedComponent implements OnInit {
 orderDetail :any
-  constructor(private route: ActivatedRoute,private httpService:HttpService) { }
+  constructor(private route: ActivatedRoute,private dataService:DataService,private httpService:HttpService) { }
 
   ngOnInit(): void {
-  this.httpService.getAllOrder().subscribe(result1=>{
-    this.route.params.subscribe((result2) => {
-      console.log(result1.data);
-      
-      this.orderDetail = result1.data.filter((e: any) => e.orderId == result2['orderId']);
-      console.log(this.orderDetail);
-      console.log(this.orderDetail[0].addressMobileNumber);
-      
-    })
-  });
-
 }
 }

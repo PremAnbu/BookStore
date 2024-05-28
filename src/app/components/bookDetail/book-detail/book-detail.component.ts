@@ -66,20 +66,24 @@ export class BookDetailComponent implements OnInit {
     if (this.dataService.wishListItems.some(item => item.bookId === this.cartDetail.bookId)) {
       this.wishListOption = true;
     }
-    
-    this.httpService.getAllWishList().subscribe(res => {
-      if (res.data.some((item: any) => item.bookId === this.bookDetail.bookId)) {
+    if(localStorage.getItem('authToken') != null){
+    this.dataService.currWishList.subscribe(res => {
+      if (res.some((item: any) => item.bookId === this.bookDetail.bookId)) {
         this.wishListOption = true;
       }
-    });
+    });}
   }
 
   addToBag() {
     if (!this.addedToBag) {
       if (localStorage.getItem('authToken') != null) {
         this.cartService.addCartApiCall(this.bookDetail.bookId, 1).subscribe(res => {
+          console.log(this.dataService.token);
+          
           this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
-            this.cartService.changeState(updatedCartData.data);
+            // this.dataService.currCartList.subscribe(updatedCartData => {
+
+            this.cartService.changeState(updatedCartData);
           });
         });
       }
@@ -106,7 +110,7 @@ export class BookDetailComponent implements OnInit {
   }
   
   decreaseCount() {
-    if (this.count > 1) {
+    if(this.count > 1) {
       this.count--;
       if (localStorage.getItem('authToken') != null) {
         this.cartService.updateQuantityCall(this.bookDetail.bookId, this.count).subscribe(res => {
@@ -114,7 +118,7 @@ export class BookDetailComponent implements OnInit {
             this.cartService.changeState(updatedCartData.data);
           });
         }, err => console.log(err))
-      } else {
+      }else{
         this.dataService.cartItems.forEach((cartItem: cartObject) => {
           if (cartItem.bookId === this.cartDetail.bookId) {
             cartItem.bookQuantity = this.count;
@@ -128,6 +132,7 @@ export class BookDetailComponent implements OnInit {
        console.log(bookId);
        this.httpService.addWishList(bookId).subscribe(res=>{
         console.log(res); 
+        this.dataService.updateWishList(this.bookDetail)
        })
        this.wishListOption=true
   }else{
