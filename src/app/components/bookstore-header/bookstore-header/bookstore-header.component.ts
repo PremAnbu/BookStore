@@ -21,7 +21,10 @@ import { cartObject } from 'src/assets/cartObjectInterface';
 export class BookstoreHeaderComponent implements OnInit {
   loginclick: boolean = false;
   CartValue!: cartObject[];
-  loginLogOut: boolean=true;
+  loginLogOut: boolean = true;
+  searchString: string = '';
+  token: any;
+
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
@@ -29,7 +32,8 @@ export class BookstoreHeaderComponent implements OnInit {
     private router: Router,
     private httpService: HttpService,
     private bookService: BookService,
-    private cartService: CartService
+    private cartService: CartService,
+    private dataService: DataService
   ) {
     matIconRegistry.addSvgIconLiteral("search-icon", domSanitizer.bypassSecurityTrustHtml(SEARCH_ICON));
     matIconRegistry.addSvgIconLiteral("profile-icon", domSanitizer.bypassSecurityTrustHtml(PROFILE_ICON));
@@ -37,29 +41,61 @@ export class BookstoreHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('token');
+    this.dataService.addToToken(this.token);
+    
     this.httpService.getAllBooks().subscribe(res => {
       this.bookService.changeState(res.data);
+      this.dataService.updateBookList(res.data); 
     });
+
     if (localStorage.getItem('authToken') != null) {
       this.httpService.getAllCart().subscribe(res => {
-        this.CartValue=res.data;
+        this.CartValue = res.data;
         this.cartService.changeState(res.data);
+        this.dataService.updateCartList(res.data); 
       });
-      this.loginLogOut=false
+
+      this.httpService.getAllWishList().subscribe(res => {
+        this.dataService.updateWishList(res.data); 
+      });
+      this.httpService.getAddress().subscribe(res => {
+        this.dataService.updateAddressList(res.data); 
+      });
+
+      this.httpService.getAllOrder().subscribe(res => {
+        this.dataService.updateOrderList(res.data); 
+      });
+
+      this.loginLogOut = false;
     }
   }
 
   login() {
     const dialogRef = this.dialog.open(LoginSignupComponent, { width: '720px', height: '480px' });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(result => { });
     this.loginclick = !this.loginclick;
   }
-  logout(){
+
+  logout() {
     localStorage.clear();
-    // this.router.navigate([""])
+    this.dataService.updateCartList([]); 
+    this.dataService.updateWishList([]); 
+    this.dataService.updateAddressList([]); 
+    this.dataService.updateOrderList([]); 
+    this.loginLogOut = true;
+    // this.router.navigate([""]);
   }
 
   handleCart() {
     this.router.navigate(["/cart"]);
+  }
+
+  handleLoginSignup() {
+    if (localStorage.getItem('authToken') != null) this.loginLogOut = false;
+  }
+
+  handleSearchString() {
+    this.dataService.updateSearchString(this.searchString);
   }
 }

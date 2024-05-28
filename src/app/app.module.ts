@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatDialogModule} from '@angular/material/dialog';
+
 
 import { LoginComponent } from './components/login/login/login.component';
 import { SigninComponent } from './components/signin/signin/signin.component';
@@ -21,13 +23,13 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { BooksComponent } from './components/books/books/books.component';
 import { BooksContainerComponent } from './components/booksContainer/books-container/books-container.component';
 import { BookDetailComponent } from './components/bookDetail/book-detail/book-detail.component';  
-import { MatDialogModule} from '@angular/material/dialog';
 import { LoginSignupComponent } from './components/loginSignup/login-signup/login-signup.component';
 import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customerDetails/customer-details/customer-details.component';
 import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
+import { SearchPipe } from './pipe/search.pipe';
 
 
 
@@ -47,6 +49,7 @@ import { OrderplacedComponent } from './components/orderPlaced/orderplaced/order
     WishlistComponent,
     OrderlistComponent,
     OrderplacedComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

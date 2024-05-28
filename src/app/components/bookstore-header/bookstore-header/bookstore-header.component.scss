@@ -49,7 +49,7 @@
 .profile {
     display: flex;
     flex-direction: column;
-    margin-left: auto;
+    margin-left: 69%;
     color: white;
     font-size: 10px;
     gap: 5px;
@@ -60,7 +60,7 @@
 .cart {
     display: flex;
     flex-direction: column;
-    margin-left: 80px;
+    margin-left: 25px;
     color: white;
     font-size: 10px;
     gap: 5px;
@@ -70,22 +70,23 @@
 
 .profile-history {
     // border: 2px solid red;
-    width: 290px;
+    width: 280px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 2% 4%;
+    align-items: center;
+    justify-content: center;
+    // padding: 2% 4%;
     gap: 6px;
 }
 .profile-history span{
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .login-signup button {
     border: 1px solid red;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    // padding: 5px 10px;
+    // border-radius: 5px;
+    // margin-bottom: 5px;
     color: red;
 }
 .login-signin{
@@ -93,21 +94,29 @@
     width: 200px;
     height: fit-content;
     display: flex;
-    // align-items: center;
-    margin: 10%;
+    align-items: center;
+    justify-content: center;
+    // margin: 10%;
     flex-direction: column;
+    gap: 8px;
     cursor: pointer;
 }
 .login-signin button{
     border: 1px solid red;
-    padding: 0px 10px;
+    // padding: 0px 10px;
     border-radius: 5px;
     // margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
     color: red;
 }
 
 @media only screen and (min-width: 300px) and (max-width: 500px) {
     .bookstore-icon span {
         display: none;
+    }
+    .search-input {
+        // width: none;
+        // height: 28px;    
     }
 }

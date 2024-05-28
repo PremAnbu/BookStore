@@ -1,16 +1,16 @@
 <div class="header-main-cnt">
     <div class="header">
-        <div class="bookstore-icon" routerLink="/books">
-            <img src="assets/education.png" alt="Image not found">
-            <span>BookStore</span>
+        <div class="bookstore-icon">
+            <img src="assets/education.png" alt="Image not found" routerLink="/books">
+            <span routerLink="/books">BookStore</span>
         </div>
 
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search...">
+            <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchString" (input)="handleSearchString()">
             <mat-icon class="search-icon" svgIcon="search-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
         </div>
 
-        <div class="profile" [matMenuTriggerFor]="Profile">
+        <div class="profile" [matMenuTriggerFor]="Profile" (click)="handleLoginSignup()">
             <mat-icon class="profile-icon" svgIcon="profile-icon" aria-hidden="false" aria-label="Profile SVG icon"></mat-icon>
             <span>Profile</span>
         </div>
@@ -27,7 +27,7 @@
         <span><b>Welcome</b></span>
         <span>To access account and manage orders</span>
         <div class="login-signup">
-            <button mat-button (click)="login()">LOGIN/SIGNUP</button>
+            <button mat-stroked-button color="warn" (click)="login()">LOGIN/SIGNUP</button>
         </div>
         <div>         <hr>
         </div>
@@ -40,7 +40,7 @@
             <div class="profile-icon">Profile</div>
             <div class="order-icon" routerLink="/orderList">My Orders</div>
             <div class="heart-icon" routerLink="/wishList">&#x2764;My Wishlist</div>
-            <button mat-button (click)="logout()">LOGOUT</button>
+            <button mat-stroked-button color="warn" (click)="logout()">LOGOUT</button>
         </div>
     </div>
 </mat-menu>

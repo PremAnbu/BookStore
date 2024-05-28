@@ -8,9 +8,6 @@
 }
 .cart-outer-cnt
 {
-    // display: flex;
-    // flex-wrap: wrap;
-    
     height: fit-content;
     width: 65%;
     border: 1px solid rgba(130, 130, 130, 0.644);
@@ -68,6 +65,8 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    // border: 1px solid green;
+    width: 40%;
 }
 
 .booktitle
@@ -81,6 +80,8 @@
 }
 .cart-detail{
     padding-left: 29px;
+    // border: 1px solid red;   
+    width: 70%;
 }
 .rating-cnt{
     padding-top: 7px;
@@ -103,14 +104,15 @@
 }
 .button
 {
-    height: fit-content;
+    // height: fit-content;
+    // border: 1px solid #df0a0a;   
 }
 .count
 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 65%;
+    width: 45%;
     padding: 14px 0px 0px 0px;
 }
 .countvalue

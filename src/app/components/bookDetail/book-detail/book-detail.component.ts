@@ -6,6 +6,9 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 import { BookObject } from 'src/assets/BookObjectInterface';
 import { cartObject } from 'src/assets/cartObjectInterface';
 import { HttpService } from 'src/app/services/httpService/http.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { STAR_ICON, STAR_ICON_BLACK, STAR_ICON_YELLOW } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-book-detail',
@@ -20,7 +23,11 @@ export class BookDetailComponent implements OnInit {
   count: number = 1;
   wishListOption :boolean=false
 
-  constructor(private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService,private httpService:HttpService) {}
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private bookService: BookService, private cartService: CartService, private route: ActivatedRoute, private dataService: DataService,private httpService:HttpService) {
+    iconRegistry.addSvgIconLiteral("star_icon", sanitizer.bypassSecurityTrustHtml(STAR_ICON)),
+    iconRegistry.addSvgIconLiteral("star_icon_black", sanitizer.bypassSecurityTrustHtml(STAR_ICON_BLACK)),
+    iconRegistry.addSvgIconLiteral("star_icon_yellow", sanitizer.bypassSecurityTrustHtml(STAR_ICON_YELLOW))
+  }
 
   ngOnInit(): void {
     this.bookService.currentBookState.subscribe(result1 => {
@@ -59,22 +66,24 @@ export class BookDetailComponent implements OnInit {
     if (this.dataService.wishListItems.some(item => item.bookId === this.cartDetail.bookId)) {
       this.wishListOption = true;
     }
-    
-    this.httpService.getAllWishList().subscribe(res => {
-      if (res.data.some((item: any) => item.bookId === this.cartDetail.bookId)) {
+    if(localStorage.getItem('authToken') != null){
+    this.dataService.currWishList.subscribe(res => {
+      if (res.some((item: any) => item.bookId === this.bookDetail.bookId)) {
         this.wishListOption = true;
       }
-    });
-    
-
+    });}
   }
 
   addToBag() {
     if (!this.addedToBag) {
       if (localStorage.getItem('authToken') != null) {
         this.cartService.addCartApiCall(this.bookDetail.bookId, 1).subscribe(res => {
+          console.log(this.dataService.token);
+          
           this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
-            this.cartService.changeState(updatedCartData.data);
+            // this.dataService.currCartList.subscribe(updatedCartData => {
+
+            this.cartService.changeState(updatedCartData);
           });
         });
       }
@@ -101,7 +110,7 @@ export class BookDetailComponent implements OnInit {
   }
   
   decreaseCount() {
-    if (this.count > 1) {
+    if(this.count > 1) {
       this.count--;
       if (localStorage.getItem('authToken') != null) {
         this.cartService.updateQuantityCall(this.bookDetail.bookId, this.count).subscribe(res => {
@@ -109,7 +118,7 @@ export class BookDetailComponent implements OnInit {
             this.cartService.changeState(updatedCartData.data);
           });
         }, err => console.log(err))
-      } else {
+      }else{
         this.dataService.cartItems.forEach((cartItem: cartObject) => {
           if (cartItem.bookId === this.cartDetail.bookId) {
             cartItem.bookQuantity = this.count;
@@ -121,8 +130,9 @@ export class BookDetailComponent implements OnInit {
   handleWishList(bookId:number){
     if (localStorage.getItem('authToken') != null) {
        console.log(bookId);
-       this.httpService.addWishList(this.cartDetail.bookId).subscribe(res=>{
+       this.httpService.addWishList(bookId).subscribe(res=>{
         console.log(res); 
+        this.dataService.updateWishList(this.bookDetail)
        })
        this.wishListOption=true
   }else{
