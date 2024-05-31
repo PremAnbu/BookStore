@@ -66,7 +66,6 @@ export class BookstoreHeaderComponent implements OnInit {
       this.httpService.getAllOrder().subscribe(res => {
         this.dataService.updateOrderList(res.data); 
       });
-
       this.loginLogOut = false;
     }
   }

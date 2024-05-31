@@ -79,19 +79,17 @@ export class BookDetailComponent implements OnInit {
       if (localStorage.getItem('authToken') != null) {
         this.cartService.addCartApiCall(this.bookDetail.bookId, 1).subscribe(res => {
           console.log(this.dataService.token);
-          
           this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
             // this.dataService.currCartList.subscribe(updatedCartData => {
-
             this.cartService.changeState(updatedCartData);
           });
         });
       }
     }
+    // this.dataService.addToCart(this.bookDetail);
     this.addedToBag = true;
   }
   
-
   increaseCount() {
     this.count++;
     if (localStorage.getItem('authToken') != null) {
@@ -136,7 +134,7 @@ export class BookDetailComponent implements OnInit {
        })
        this.wishListOption=true
   }else{
-    const alreadyInWishList = this.dataService.wishListItems.some(item => item.bookId === this.bookDetail.bookId);
+    const alreadyInWishList = this.dataService.wishListItems.some(item => item.bookId === bookId);
    if(!alreadyInWishList)
     this.dataService.addToWishList(this.bookDetail)
         this.wishListOption=true

@@ -17,7 +17,6 @@ export class OrderlistComponent implements OnInit {
       this.dataService.currOrderList.subscribe(res=>{
       this.orderList=res
     },err=>console.log(err))
-    
   }
   }
 }

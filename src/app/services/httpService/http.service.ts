@@ -26,14 +26,17 @@ export class HttpService {
   }
   getAllCart(token? : any): Observable<any> {
     if(token!=''&& token!=undefined){
-        return this.http.get<any>(`${this.apiUrl}/ShoppingCart/GetCartBooks`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` || ""})});        
+      console.log("inside getAllCart");
+        return this.http.get<any>(`${this.apiUrl}/ShoppingCart/GetCartBooks`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}`})});        
       }
+      console.log("outside getAllCart");
     return this.http.get<any>(`${this.apiUrl}/ShoppingCart/GetCartBooks`, { headers: this.authHeader });
   }
 
   addCart(bookId: number, bookQuantity: number,token? : any): Observable<any> {
+    // const body={bookQuantity:bookQuantity,bookId:bookId}
     if(token!=''&& token!=undefined){
-        return this.http.post<any>(`${this.apiUrl}/ShoppingCart/AddToCart`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` || ""})});
+        return this.http.post<any>(`${this.apiUrl}/ShoppingCart/AddToCart`,{ bookQuantity, bookId }, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` })});
       }
     return this.http.post<any>(`${this.apiUrl}/ShoppingCart/AddToCart`, { bookQuantity, bookId }, { headers: this.authHeader });
   }
@@ -48,7 +51,7 @@ export class HttpService {
 
   updateQuantity(bookId: number, bookQuantity: number,token? : any): Observable<any> {
     if(token!=''&& token!=undefined){
-        return this.http.put<any>(`${this.apiUrl}/ShoppingCart/UpdateQuantity`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` || ""})});
+        return this.http.put<any>(`${this.apiUrl}/ShoppingCart/UpdateQuantity`, { bookQuantity, bookId }, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` })});
       }
     return this.http.put<any>(`${this.apiUrl}/ShoppingCart/UpdateQuantity`, { bookQuantity, bookId }, { headers: this.authHeader });
   }
@@ -79,14 +82,16 @@ export class HttpService {
 
   addWishList(bookId:number,token? : any): Observable<any> {
     if(token!=''&& token!=undefined){
-        return this.http.post <any>(`https://localhost:7098/api/WishList?bookId=${bookId}`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` || ""})});
+      console.log("inside getAllWish");
+        return this.http.post <any>(`https://localhost:7098/api/WishList?bookId=${bookId}`, {},{ headers:new  HttpHeaders({Authorization: `Bearer ${token}`})});
       }
+      console.log("outside getAllWish");
     return this.http.post<any>(`https://localhost:7098/api/WishList?bookId=${bookId}`,{},{ headers: this.authHeader });
   }
 
   getAllWishList(token? : any): Observable<any> {
     if(token!=''&& token!=undefined){
-        return this.http.get<any>(`${this.apiUrl}/WishList/GetAllWishList`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}` || ""})});
+        return this.http.get<any>(`${this.apiUrl}/WishList/GetAllWishList`, { headers:new  HttpHeaders({Authorization: `Bearer ${token}`})});
       }
     return this.http.get<any>(`${this.apiUrl}/WishList/GetAllWishList`, { headers: this.authHeader });
   }
