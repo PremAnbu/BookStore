@@ -52,14 +52,16 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(["/books"]);
 
     if (res.data != null) {
-      this.httpService.getAllCart().subscribe(
+      this.httpService.getAllCart(res.data).subscribe(
         res => {
           this.cartList = res.data.filter((ele: cartObject) => ele.bookQuantity > 0);
           console.log('Server Cart:', this.cartList,this.tempList);
           this.cartList = this.updateCart(this.tempList, this.cartList);
           console.log('Updated Cart:', this.cartList);
           // this.dataService.updateCartList(this.cartList); /// Update the DataService
-          this.httpService.getAllCart().subscribe(res => {
+          console.log(res);
+          
+          this.httpService.getAllCart(this.token).subscribe(res => {
             this.dataService.updateCartList(res.data); 
           })
         },
@@ -73,13 +75,13 @@ export class LoginComponent implements OnInit {
     this.tempWishList = this.dataService.wishListItems;
 
     if (res.data != null) {
-      this.httpService.getAllWishList().subscribe(
+      this.httpService.getAllWishList(res.data).subscribe(
         res => {
           this.wishList = res.data;
           this.wishList = this.updateWishList(this.tempWishList, this.wishList);
           console.log('wishList:', this.wishList);
           this.dataService.updateWishList(this.wishList); 
-          this.httpService.getAllWishList().subscribe(
+          this.httpService.getAllWishList(this.token).subscribe(
             res => {
               this.dataService.updateWishList(res.data);
             });
@@ -97,13 +99,13 @@ export class LoginComponent implements OnInit {
       const serverItem = serverCart.find(item => item.bookId === tempItem.bookId);
       if (serverItem) {
         serverItem.bookQuantity += tempItem.bookQuantity;
-        this.cartService.updateQuantityCall(serverItem.bookId, serverItem.bookQuantity).subscribe(
+        this.httpService.updateQuantity(serverItem.bookId, serverItem.bookQuantity,this.token).subscribe(
           res => console.log('Updated Quantity:', res),
           err => console.log(err)
         );
       } else {
         serverCart.push(tempItem);
-        this.cartService.addCartApiCall(tempItem.bookId, tempItem.bookQuantity).subscribe(
+        this.httpService.addCart(tempItem.bookId, tempItem.bookQuantity,this.token).subscribe(
           res => console.log('Added to Cart:', res),
           err => console.log(err)
         );
@@ -118,7 +120,7 @@ export class LoginComponent implements OnInit {
       if (!alreadyInWishList) {
         wishList.push(tempItem);
         console.log(tempItem.bookId);
-        this.httpService.addWishList(tempItem.bookId).subscribe(
+        this.httpService.addWishList(tempItem.bookId,this.token).subscribe(
           res => console.log('Added to wishList:', res),
           err => console.error('Error adding to wishList:', err)
         );

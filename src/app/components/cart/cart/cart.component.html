@@ -1,50 +1,52 @@
 <div class="cart-main-cnt">
   <div class="back-to-dashbaord">
-    <a><strong routerLink="/books">Home</strong><span> /CartList </span></a> 
+    <span><span routerLink="/books">Home / </span><strong> CartList </strong></span> 
   </div>
-   <div class="cart-outer-cnt"><br>
+   <div class="cart-outer-cnt">
+    <!-- <div class="cart-outer"> -->
     <div class="count-cnt">
         <span><b>My cart({{cartList.length}})</b></span>
-        <div class="loc-icon-cnt">
+        <div class="loc-icon-cnt" *ngIf="cartList.length > 0">
             <span class="loc-icon"> 
-                <mat-icon svgIcon="location-icon"></mat-icon>
-                Premkumar,Sillarahalli,No... 
-                <mat-icon svgIcon="drop-down-icon"></mat-icon>
+                <mat-icon svgIcon="location-icon"></mat-icon> Premkumar,Sillarahalli,No... 
+                <mat-icon class="drop-down" svgIcon="drop-down-icon"></mat-icon>
             </span>
         </div>
     </div>
-    <br>
-    <div *ngFor="let book of cartList" class="img-cnt">
-        <div class="content">
+    <!-- <br> -->
+    <div *ngFor="let book of cartList" class="cart-inf-cnt">
+        <!-- <div class="content"> -->
             <img [src]="book.imagePath" alt="">
             <div class="cart-detail">
                 <span class="booktitle">{{book.title}}</span>
-                <span style="color: #818181;">{{book.author}}</span>
+                <span class="bookauthor" style="color: #818181;">{{book.author}}</span>
                 <div class="rating-cnt">
                     <span class="sellingprice">Rs.{{book.price}}
-                        <span class="originalprice">Rs.1999</span>
+                    <span class="originalprice">Rs.1999</span>
                     </span>
-                    <div class="count">
-                        <span class="symbol" (click)="decreaseCount(book)">-</span> 
-                        <span class="countvalue">{{book.bookQuantity}}</span> 
-                        <span class="symbol"  (click)="increaseCount(book)">+</span>
-                        <span class="remove" (click)="removeCart(book)">Remove</span>
-                    </div>
                 </div>
+                <div class="count">
+                  <span class="symbol" (click)="decreaseCount(book)"> -</span> 
+                  <span class="countvalue">{{book.bookQuantity}}</span> 
+                  <span class="symbol"  (click)="increaseCount(book)">+</span>
+                  <span class="remove" (click)="removeCart(book)">Remove</span>
+              </div>
             </div>  
-        </div>
+        <!-- </div> -->
+      </div>
+    
+    <div *ngIf="cartList.length>0" class="place-order-btn">
+         <button  mat-raised-button color="primary" (click)="placeOrder()">PLACE ORDER</button>
     </div>
-    <div *ngIf="cartList.length>0" class="button">
-    <button  mat-raised-button color="primary" (click)="placeOrder()">PLACE ORDER</button>
-    </div>
-</div>
+  <!-- </div> -->
+</div><br>
 
 <div class="bottom" *ngIf="placeorder">Address Details</div>
 <div class="address-detail" *ngIf="!placeorder">
     <div class="list-of-adderss">
-      <div class="address-header">
-        <span>Customer Details</span>
-        <button mat-stroked-button color="warn" (click)="editAddress(emptyAddress)">Add New Address</button>
+      <div class="count-cnt">
+        <span><b>Customer Details</b></span>
+        <button mat-stroked-button color="warn" class="add-add" (click)="editAddress(emptyAddress)">Add New Address</button>
       </div>
       <div class="address-main" *ngFor="let address of addressList">
         <div class="old-address">
@@ -55,16 +57,16 @@
         </div>
         <div class="address-btn">
           <button mat-raised-button color="primary" (click)="editAddress(address)" class="continue-btn">EDIT ADDRESS</button>
-          <button mat-raised-button color="primary" (click)="removeAddress(address.addressId)" class="continue-btn">REMOVE ADDRESS</button>
+          <button mat-raised-button color="primary" (click)="removeAddress(address.addressId)" class="remove-btn">REMOVE ADDRESS</button>
           <button mat-raised-button color="primary" (click)="orderAddress(address)">CONTINUE</button>
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
   
   <div class="address-detail" *ngIf="!editaddress">
     <div class="address-header">
-      <span>Customer Details</span>
+      <span><b>Customer Details</b></span>
     </div>
     <form [formGroup]="addressForm">
       <div class="customer-address">
@@ -121,23 +123,22 @@
     </form>
   </div>
   
-  <br>
-  <div class="cart-outer-cnt">
-    <div class="address-header"><span>Order Summary</span></div>
-    <div *ngIf="!order">
-      <div class="img-cnt" *ngFor="let cartList of cartList">
-        <div class="content">
-          <img [src]="cartList.imagePath" alt="">
-          <div class="cart-detail">
-            <span class="booktitle">{{cartList.title}}</span>
-            <span style="color: #818181;">{{cartList.author}}</span>
-            <div class="rating-cnt">
-              <span class="sellingprice">Rs.{{cartList.price}}
-                <span class="originalprice">Rs.1999</span>
-              </span>
+  
+  <div class="cart-order-cnt">
+    <div class="address-header"><span><b>Order Summary</b></span></div>
+    <div *ngIf="!order" class="order-summary">
+      <div *ngFor="let book of cartList" class="cart-inf-cnt">
+            <img [src]="book.imagePath" alt="">
+            <div class="cart-detail">
+                <span class="booktitle">{{book.title}}</span>
+                <span class="bookauthor" style="color: #818181;">{{book.author}}</span>
+                <div class="rating-cnt">
+                    <span class="sellingprice">Rs.{{book.price}}
+                    <span class="originalprice">Rs.1999</span>
+                    </span>
+                </div>
+                <br><br>
             </div>
-          </div>
-        </div>
       </div>
       <div class="continue">
         <button mat-raised-button color="primary" class="continue-btn" (click)="handleOrder()">CHECKOUT</button>

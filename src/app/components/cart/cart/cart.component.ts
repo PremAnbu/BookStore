@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
   increaseCount(book:any) {
     if (localStorage.getItem('authToken') != null) {
       this.cartService.updateQuantityCall(book.bookId,++book.bookQuantity).subscribe(res =>{
-        this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+        this.httpService.getAllCart().subscribe(updatedCartData => {
           this.cartService.changeState(updatedCartData.data);
         });
     },err => console.log(err)
@@ -94,7 +94,7 @@ export class CartComponent implements OnInit {
     if (book.quantity > 1) {
       if (localStorage.getItem('authToken') != null) {
         this.cartService.updateQuantityCall(book.bookId,--book.bookQuantity).subscribe(res =>{
-          this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+          this.httpService.getAllCart().subscribe(updatedCartData => {
             this.cartService.changeState(updatedCartData.data);
           });
       },err => console.log(err)
@@ -121,7 +121,7 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem('authToken') != null) {
       this.cartList=this.cartList.filter(res=> book.cartId != res.cartId)
     this.cartService.removeCartCall(book.cartId).subscribe(res =>{
-      this.cartService.getAllCartApiCall().subscribe(updatedCartData => {
+      this.httpService.getAllCart().subscribe(updatedCartData => {
         this.cartService.changeState(updatedCartData.data);
       });
     },err => console.log(err)
@@ -178,9 +178,6 @@ export class CartComponent implements OnInit {
     this.dataService.updateAddressList(updatedAddresses); 
   }
   
-  
-  
-
   orderAddress(address: any) {
     this.order = false;
     this.orderaddress = address;
