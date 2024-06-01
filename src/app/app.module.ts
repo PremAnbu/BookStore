@@ -30,6 +30,7 @@ import { WishlistComponent } from './components/wishList/wishlist/wishlist.compo
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
 import { SearchPipe } from './pipe/search.pipe';
+import { ProfileComponent } from './components/profile/profile/profile.component';
 
 
 
@@ -50,6 +51,7 @@ import { SearchPipe } from './pipe/search.pipe';
     OrderlistComponent,
     OrderplacedComponent,
     SearchPipe,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

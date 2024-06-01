@@ -1,89 +1,101 @@
-<div class="bookdetails-main-cnt">
-    <div class="back-to-dashbaord">
-      <a><strong routerLink="/books">Home</strong><span> /Books </span></a> 
+  <div class="book-detail-main-cnt">
+    <div class ="home-book-text-cnt">
+      <span class="home-text">Home/</span>
+      <span class="book-with-quantity-cnt">Book(01)</span>
     </div>
-    
-    <div *ngIf="bookDetail" class="book-details-cnt">
-        <div class="book-image-and-options">
-            <div class="book-image">
-               <img src="{{bookDetail.imagePath}}" height="300px" width="220px">
-            </div>
-            <div class="options">
-                <button mat-flat-button *ngIf="!addedToBag" class="cart-button" (click)="addToBag()">ADD TO BAG</button>
-                <div *ngIf="addedToBag" class="quantity-update">
-                  <span class="symbol" (click)="decreaseCount()">-</span>
-                  <span class="number-of-books">{{ count }}</span>
-                  <span class="symbol" (click)="increaseCount()">+</span>
+    <div class="img-withtext-main-cnt">
+      <div class="small-img">
+        <div style="width: 44px;height: 54px;border: 1px solid #D1D1D1;border-radius: 0px 1px 1px 1px;">
+            <img style="width: 37px;height: 45px;padding: 4px;" src="https://m.media-amazon.com/images/I/617rPny7-LL.AC_UF1000,1000_QL80.jpg" alt="">
+        </div>
+        <div style="width: 44px;height: 54px;border: 1px solid #D1D1D1;border-radius: 0px 1px 1px 1px;">
+            <img style="width: 37px;height: 45px;padding: 4px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYE0peAYNpnYWxNmFhMwvPybvZNZp-LaRoxw&s" alt="">
+        </div>
+        </div>
+        
+      <div class="book-image-main-cnt">
+        <div class="image">
+          <img src="{{bookDetail.imagePath}}" >
+        </div>
+  
+        <div class="add-bag-wishlist-btn-cnt">
+          <button class="addtobag-btn" (click)="addToBag()" *ngIf="!addedToBag"><span class="addtobag-btn-text">ADD TO BAG</span></button>
+          <div *ngIf="addedToBag" class="quantity-update">
+            <span class="symbol" (click)="decreaseCount()">-</span>
+            <span class="number-of-books">{{ count }}</span>
+            <span class="symbol" (click)="increaseCount()">+</span>
+          </div>
+          <button *ngIf="!wishListOption" class="wishlist-btn" (click)="handleWishList(bookDetail.bookId)"><span class="wishlist-btn-text">WISHLIST</span></button>
+          <button *ngIf="wishListOption" class="wishlist-btn" ><span class="wishlist-btn-text">DISABLE</span></button>
+        </div>
+      </div>
+      
+     
+      <div class="book-details">
+        <span class="title"><h2>{{bookDetail.title}}</h2></span>
+        <span class="author-name">by {{bookDetail.author}}</span>
+        <div class="rating-quantity">
+          <span class="rating">4.5 &#9733;</span>
+          <span>({{bookDetail.quantity}})</span>
+        </div>
+        <span class="book-price"><b>Rs. {{bookDetail.price}} </b><del>Rs. 2000</del></span>
+        <hr>
+        <b style="margin: 0px;">Book details</b>
+        <span class="book-description">{{bookDetail.description}}</span>
+        <hr>
+        <div>Customer Feedback</div>
+        <br>
+        <div class="feedback-cnt">
+            <div>
+                Overall Rating<br>
+                <div class="star_icon">
+                    <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+                    <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+                    <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+                    <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+                    <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
                 </div>
-                <button *ngIf="!wishListOption" mat-flat-button class="wishlist-button" (click)="handleWishList(bookDetail.bookId)"> WISHLIST</button>
-                <span *ngIf="wishListOption" class="wishlist-button-disable"> DISABLE</span>
-               </div>
-        </div>
-
-        <div class="book-details">
-            <span><h2>{{bookDetail.title}}</h2></span>
-            <span>by {{bookDetail.author}}</span>
-            <div class="rating-quantity">
-              <span class="rating">4.5 &#9733;</span>
-              <span>({{bookDetail.quantity}})</span>
-            </div>
-            <span><b>Rs. {{bookDetail.price}} </b><del>Rs. 2000</del></span>
-            <hr>
-            <p style="margin: 0px;">Book details</p>
-            <span>{{bookDetail.description}}</span>
-            <hr>
-            <div>Customer Feedback</div>
-            <br>
-            <div class="feedback-cnt">
-                <div>
-                    Overall Rating<br>
-                    <div class="star_icon">
-                        <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-                        <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-                        <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-                        <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-                        <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-                    </div>
-                  </div>
-            <div class="input">
-              <input type="text" placeholder="Write your review">
-              <div class="submit-btn"><br>
-                  <button mat-raised-button color="primary">SUBMIT</button>
               </div>
+        <div class="input">
+          <input type="text" placeholder="Write your review">
+          <div class="submit-btn"><br>
+              <button mat-raised-button color="primary">SUBMIT</button>
           </div>
-        </div>
-          <br>
-          <div class="name-cnt">
-              <div class="name"> PK </div>
-              <div>&nbsp; &nbsp; &nbsp; Prem Kumar</div>
-          </div>
-          <div class="star_icon">
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-          </div>
-          <div>
-              <br>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nesciunt rem asperiores similiquemagni deserunt quos, fugit itaque? Mollitia, nostrum? Distinctio perferendis neque fuga eligendi est
-          </div>
-          <div class="name-cnt">
-              <div class="name"> SS </div>
-              <div> &nbsp; &nbsp; &nbsp; Sumithra Sukumar</div>
-          </div>
-          <div class="star_icon">
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-              <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
-          </div>
-          <div>
-              <br>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nesciunt rem asperiores similiquemagni deserunt quos, fugit itaque? Mollitia, nostrum? Distinctio perferendis neque fuga eligendi est
-              <br><br><br><br><br>
-          </div>
-        </div>
+      </div>
     </div>
-  </div>
+      <br>
+      <div class="name-cnt">
+          <div class="name"> PK </div>
+          <div>&nbsp; &nbsp; &nbsp; Prem Kumar</div>
+      </div>
+      <div class="star_icon">
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+      </div>
+      <div>
+          <br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nesciunt rem asperiores similiquemagni deserunt quos, fugit itaque? Mollitia, nostrum? Distinctio perferendis neque fuga eligendi est
+      </div>
+      <div class="name-cnt">
+          <div class="name"> SS </div>
+          <div> &nbsp; &nbsp; &nbsp; Sumithra Sukumar</div>
+      </div>
+      <div class="star_icon">
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_yellow" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+          <mat-icon svgIcon="star_icon_black" aria-hidden="false" aria-label="heart SVG icon"></mat-icon>
+      </div>
+      <div>
+          <br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nesciunt rem asperiores similiquemagni deserunt quos, fugit itaque? Mollitia, nostrum? Distinctio perferendis neque fuga eligendi est
+          <br><br><br><br><br>
+      </div>
+    </div>
+    </div>
+  
+   </div>

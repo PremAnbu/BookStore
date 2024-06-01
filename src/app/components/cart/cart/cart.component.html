@@ -61,69 +61,69 @@
           <button mat-raised-button color="primary" (click)="orderAddress(address)">CONTINUE</button>
         </div>
       </div>
+      <!--  -->
+      <div class="address-detail" *ngIf="!editaddress">
+        <!-- <div class="address-header">
+          <span><b>Customer Details</b></span>
+        </div> -->
+        <form [formGroup]="addressForm">
+          <div class="customer-address">
+            <div class="name-mobile-cnt">
+              <div class="field-cnt">
+                <div class="value">Full Name</div>
+                <div>
+                  <input type="text" formControlName="name" placeholder="eg:abc" class="input-cnt">
+                </div>
+              </div>
+              <div class="field-cnt">
+                <div class="value">Mobile Number</div>
+                <div>
+                  <input type="tel" formControlName="mobileNumber" placeholder="eg:1234567890" class="input-cnt">
+                </div>
+              </div>
+            </div>
+            <div class="address-cnt">
+              <div class="value">Address</div>
+              <textarea formControlName="address" placeholder="eg:address"></textarea>
+            </div>
+            <div class="city-town">
+              <div class="field-cnt">
+                <div class="value">City/Town</div>
+                <div>
+                  <input type="text" formControlName="city" placeholder="eg:Dharmapuri" class="input-cnt">
+                </div>
+              </div>
+              <div class="field-cnt">
+                <div class="value">State</div>
+                <div>
+                  <input type="text" formControlName="state" placeholder="eg:Tamilnadu" class="input-cnt">
+                </div>
+              </div>
+            </div>
+            <div class="type">
+              <div class="value">Type</div>
+              <div class="type-list">
+                <div>
+                  <input type="radio" name="type" formControlName="type" value="Home"> Home
+                </div>
+                <div>
+                  <input type="radio" name="type" formControlName="type" value="Work"> Work
+                </div>
+                <div>
+                  <input type="radio" name="type" formControlName="type" value="Other"> Other
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="continue">
+            <button mat-raised-button color="primary" class="continue-btn" (click)=" handleAddress()">CONTINUE</button>
+          </div>
+        </form>
+      </div>
+      <!--  -->
     </div>
   </div><br>
-  
-  <div class="address-detail" *ngIf="!editaddress">
-    <div class="address-header">
-      <span><b>Customer Details</b></span>
-    </div>
-    <form [formGroup]="addressForm">
-      <div class="customer-address">
-        <div class="name-mobile-cnt">
-          <div class="field-cnt">
-            <div class="value">Full Name</div>
-            <div>
-              <input type="text" formControlName="name" placeholder="eg:abc" class="input-cnt">
-            </div>
-          </div>
-          <div class="field-cnt">
-            <div class="value">Mobile Number</div>
-            <div>
-              <input type="tel" formControlName="mobileNumber" placeholder="eg:1234567890" class="input-cnt">
-            </div>
-          </div>
-        </div>
-        <div class="address-cnt">
-          <div class="value">Address</div>
-          <textarea formControlName="address" placeholder="eg:address"></textarea>
-        </div>
-        <div class="city-town">
-          <div class="field-cnt">
-            <div class="value">City/Town</div>
-            <div>
-              <input type="text" formControlName="city" placeholder="eg:Dharmapuri" class="input-cnt">
-            </div>
-          </div>
-          <div class="field-cnt">
-            <div class="value">State</div>
-            <div>
-              <input type="text" formControlName="state" placeholder="eg:Tamilnadu" class="input-cnt">
-            </div>
-          </div>
-        </div>
-        <div class="type">
-          <div class="value">Type</div>
-          <div class="type-list">
-            <div>
-              <input type="radio" name="type" formControlName="type" value="Home"> Home
-            </div>
-            <div>
-              <input type="radio" name="type" formControlName="type" value="Work"> Work
-            </div>
-            <div>
-              <input type="radio" name="type" formControlName="type" value="Other"> Other
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="continue">
-        <button mat-raised-button color="primary" class="continue-btn" (click)=" handleAddress()">CONTINUE</button>
-      </div>
-    </form>
-  </div>
-  
-  
+  <!-- /-------- -->
   <div class="cart-order-cnt">
     <div class="address-header"><span><b>Order Summary</b></span></div>
     <div *ngIf="!order" class="order-summary">

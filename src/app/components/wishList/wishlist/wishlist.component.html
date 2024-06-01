@@ -1,27 +1,23 @@
-<div class="wishlist-main-cnt">
-    <div class="heading-content">
-        <div class="wishlist-items">
-           <span class="home" routerLink="/books">Home / </span>
-           <span class="items">My WishList</span>
-        </div>
+ <div class="wishlist-main-cnt">
+    <div class="title-nav">
+        <span class="home-nav" routerLink="/books">Home</span>
+        <span class="wishlist-nav">/ My Wishlist</span>
     </div>
-    <div class="wishlist-cnt"  >
-            <div class="address-header"><span>MyWishlist()</span></div>
-                <div class="content" *ngFor="let book of wishList">
-                    <div class="book-img">
-                       <img src="{{ book?.imagePath }}" alt="">
-                    </div>
-                    <div class="cart-detail">
-                        <span class="booktitle">{{book?.title}}</span>
-                        <span style="color: #818181;">{{book?.author}}</span>
-                        <div class="rating-cnt">
-                            <span class="sellingprice"><b>Rs.{{book?.price}}    </b><span class="offer">Rs.1999</span></span>
-                        </div>
-                    </div>  
-                    <div class="delete-icon">
-                        <mat-icon class="search-icon" svgIcon="delete-icon" aria-hidden="false" aria-label="Search SVG icon" (click)="removeWishList(book.wishListId,book.bookId)"></mat-icon>
-                    </div>
-                </div>
-            </div>
+    <div class="wishlist-cnt" *ngIf="wishList.length > 0">
+         <div class="wishlist-heading-cnt">
+             <span class="wishlist-heading">My Wishlist ({{wishList.length}})</span>
+         </div>
+               <div class="wishlist-books-cnt"  *ngFor="let item of wishList">
+                 <img src="{{item?.imagePath}}" alt="image is not found" class="book-image-cnt">
+                 <div class="book-details">
+                    <span class="book-name">{{item.title}}</span>
+                    <span class="author-name">{{item?.author}}</span>
+                    <span class="price">Rs. {{item.price}}</span>
+                 </div>
+                 <mat-icon class="delete-icon" svgIcon="delete-icon" aria-hidden="false" aria-label="Search SVG icon" (click)="removeWishList(item.wishListId,item.bookId)"></mat-icon>
+               </div>
     </div>
-
+    <div *ngIf="wishList.length === 0" class="empty-wishlist">
+        <span class="content">Your wishlist is empty</span>
+    </div>
+</div>

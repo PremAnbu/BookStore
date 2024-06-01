@@ -14,9 +14,10 @@ export class WishlistComponent implements OnInit {
 
   wishList! :any[]
   constructor( private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry,private httpService:HttpService,
-  private dataService:DataService) {
-      matIconRegistry.addSvgIconLiteral("delete-icon", domSanitizer.bypassSecurityTrustHtml(DELETE_FOREVER_ICON));
+    private matIconRegistry: MatIconRegistry
+    ,private httpService:HttpService,
+    private dataService:DataService) {
+    matIconRegistry.addSvgIconLiteral("delete-icon", domSanitizer.bypassSecurityTrustHtml(DELETE_FOREVER_ICON));
      }
 
   ngOnInit(): void {
@@ -42,5 +43,5 @@ export class WishlistComponent implements OnInit {
         this.wishList = this.dataService.wishListItems.filter(item => item.bookId !== bookId);
         this.dataService.wishListItems=this.wishList;
       }
-  }
+   }
 }

@@ -6,7 +6,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { CART_ICON, PROFILE_ICON, SEARCH_ICON } from 'src/assets/svg-icons';
+import { CART_ICON, PROFILE_ICON, PROFILE_ICON_BLACKCOLOUR, SEARCH_ICON, WISHLIST_ICON } from 'src/assets/svg-icons';
 import { LoginSignupComponent } from '../../loginSignup/login-signup/login-signup.component';
 import { BookService } from 'src/app/services/bookService/book.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
@@ -37,7 +37,9 @@ export class BookstoreHeaderComponent implements OnInit {
   ) {
     matIconRegistry.addSvgIconLiteral("search-icon", domSanitizer.bypassSecurityTrustHtml(SEARCH_ICON));
     matIconRegistry.addSvgIconLiteral("profile-icon", domSanitizer.bypassSecurityTrustHtml(PROFILE_ICON));
+    matIconRegistry.addSvgIconLiteral("profile-icon-block", domSanitizer.bypassSecurityTrustHtml(PROFILE_ICON_BLACKCOLOUR));
     matIconRegistry.addSvgIconLiteral("cart-icon", domSanitizer.bypassSecurityTrustHtml(CART_ICON));
+    matIconRegistry.addSvgIconLiteral("wishlist-icon", domSanitizer.bypassSecurityTrustHtml(WISHLIST_ICON));
   }
 
   ngOnInit(): void {

@@ -1,0 +1,88 @@
+<div class="home-profile">
+    <span class="home">Home/</span>
+    <span class="profile">Profile</span>
+    </div>
+    
+    <div class="main-cntr">
+        <!-- <div class="profile-details-cntr" *ngIf="user"> -->
+            <div class="personal-cntr">
+              <div>
+                <span class="Personal-dtls">Personal Details</span>
+                <!-- <button class="edit" (click)="toggleEditMode()">{{ editMode ? 'Cancel' : 'Edit' }}</button> -->
+              </div>
+              <div>
+                <!-- <button *ngIf="editMode" class="save" (click)="saveChanges()">Save</button> -->
+              </div>
+            </div>
+          
+            <div class="label-input-cntr">
+              <label class="label" for="fullName">Full Name</label>
+              <!-- <input type="text" class="input" [readonly]="!editMode" [(ngModel)]="user.name"> -->
+            </div>
+          
+            <div>
+              <label class="label" for="Email">Email id</label>
+              <!-- <input type="email" class="input" [readonly]="!editMode" [(ngModel)]="user.email"> -->
+            </div>
+          
+            <div>
+              <label class="label" for="Password">Password</label>
+              <!-- <input type="password" class="input" [readonly]="!editMode" [(ngModel)]="user.password"> -->
+            </div>
+          
+            <div>
+              <label class="label" for="number">Mobile Number</label>
+              <!-- <input type="number" class="input" [readonly]="!editMode" [(ngModel)]="user.mobileNumber"> -->
+            </div>
+          </div>
+    <div class="Address-dtls-cntr">
+        <div>
+        <span class="Address-dtls">Address Details</span>
+        </div>
+        <div>
+        <button class="add-new-adrs"> <span class="address.btn.ctnt">Add New Address</span></button>
+       </div>
+    </div>  
+    <div class="work-cntr">
+        <div class="edit-save-button">
+            <div>
+                <span class="Personal-dtls">1.Work</span>
+                <span class="edit">Edit</span>
+            </div>
+        <div>
+            <button class="save">Save</button>
+           </div>
+        </div>
+        <div class="address">
+            <label class="label" for="fullName">Address</label>
+            <textarea  class="input" rows="4" disabled>BridgeLabz Solutions LLP, No. 42, 14th Main, 15th Cross, Sector 4, Opp to BDA complex, near Kumarakom restaurant, HSR Layout, Bangalore</textarea>
+          </div>
+          <div class="city-state-cntr">
+            <div class="city-cntr">
+                <label class="city-label" for="fullName">City/town</label>
+                <input type="text" class="input" value="Bangalore" >
+              </div>
+              <div class="state-cntr">
+                <label class="state-label" for="fullName">State</label>
+                <input type="text" class="input" value="Karnataka" >
+              </div> 
+              </div>   
+    </div>
+    <div class="type">
+        <label>Type</label>
+      <div class="radio-group">
+        <div>
+          <input type="radio" id="home" name="type" value="Home" >
+          <label for="home">Home</label>
+        </div>
+        <div>
+          <input type="radio" id="work" name="type" value="Work" checked >
+          <label for="work">Work</label>
+        </div>
+        <div>
+        <input type="radio" id="other" name="type" value="Other" >
+        <label for="other">Other</label>
+       </div>
+      </div>
+      <!-- </div> -->
+    </div>
