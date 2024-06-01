@@ -1,26 +1,22 @@
-<div class="orderlist-main-cnt">
-    <div class="heading-content">
-        <div class="orderlist-items">
-           <span class="home" routerLink="/books">Home / </span>
-           <span class="items">My OrderList</span>
-        </div>
+ <div class="orderlist-main-cnt">
+    <div class="title-nav">
+        <span class="home-nav" routerLink="/dashboard/books">Home</span>
+        <span class="order-nav">/ My Order</span>
     </div>
-    <div class="orderlist-cnt" *ngFor="let order of orderList" >
-                <div class="content" >
-                    <div class="book-img">
-                       <img src="{{ order?.imagePath }}" alt="">
-                    </div>
-                    <div class="cart-detail">
-                        <span class="booktitle">{{order?.title}}</span>
-                        <span style="color: #818181;">{{order?.author}}</span>
-                        <div class="rating-cnt">
-                            <span class="sellingprice"><b>Rs.{{order?.price}}    </b><span class="offer">Rs.1999</span></span>
-                        </div>
-                    </div>  
-                    <div class="ordered-date">
-                        <span><b>Order Placed on {{order.orderDate}}</b></span>
-                    </div>
+    <div class="orderlist-cnt" *ngIf="orderList.length > 0">
+            <div *ngFor="let item of orderList" class="orderlist-books-cnt">
+                <img src="{{ item?.imagePath }}" alt="image is not found" class="book-image-cnt">
+                <div class="book-details">
+                   <span class="book-name">{{item?.title}}</span>
+                   <span class="author-name">{{item?.author}}</span>
+                   <span class="price">Rs. {{item.price}}</span>
                 </div>
+                <ul class="circle-list">
+                    <li><span class="order-date">Order placed on {{item.orderDate}}</span></li>
+                </ul>
             </div>
     </div>
-
+    <div *ngIf="orderList.length === 0" class="empty-orderlist">
+        <span class="content">Your wishlist is empty</span>
+    </div>
+</div>

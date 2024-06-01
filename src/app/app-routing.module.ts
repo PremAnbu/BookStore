@@ -8,6 +8,7 @@ import { CustomerDetailsComponent } from './components/customerDetails/customer-
 import { WishlistComponent } from './components/wishList/wishlist/wishlist.component';
 import { OrderlistComponent } from './components/orderList/orderlist/orderlist.component';
 import { OrderplacedComponent } from './components/orderPlaced/orderplaced/orderplaced.component';
+import { ProfileComponent } from './components/profile/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path:'orderPlaced',
         component:OrderplacedComponent
+      },
+      {
+        path:'profile',
+        component:ProfileComponent
       },
     ] 
   }

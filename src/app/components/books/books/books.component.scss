@@ -6,20 +6,12 @@
     width: 75%;
     margin-left: 10%;
     margin-top: 25px;
-
 }
-
 .book-outer-container {
     display: flex;
-    // flex-direction: row;
-    // justify-content: center;
     gap: 3%;
-    // width: 100%;
     flex-wrap: wrap;
-    // padding: 3% 8% 0% 14%;
-    // border: 1px solid red;
 }
-
 .book-container {
     width: 250px; 
     // min-width: 170px;

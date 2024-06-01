@@ -1,50 +1,70 @@
 <div class="header-main-cnt">
-    <div class="header">
-        <div class="bookstore-icon">
-            <img src="assets/education.png" alt="Image not found" routerLink="/books">
-            <span routerLink="/books">BookStore</span>
+    <div class="inner-main-cnt">
+      <div class="img-span-search-cntr">
+        <div class="img-span-cntr">
+          <img class="book-img" src="assets/education.png" alt="Image not found" routerLink="/books"/>
+          <span routerLink="/books">BookStore</span>
         </div>
-
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchString" (input)="handleSearchString()">
-            <mat-icon class="search-icon" svgIcon="search-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
+          <mat-icon class="search-icon" svgIcon="search-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
+          <input type="text" class="search-input" placeholder="Search..." (input)="handleSearchString()" [(ngModel)]="searchString" />
         </div>
-
-        <div class="profile" [matMenuTriggerFor]="Profile" (click)="handleLoginSignup()">
-            <mat-icon class="profile-icon" svgIcon="profile-icon" aria-hidden="false" aria-label="Profile SVG icon"></mat-icon>
-            <span>Profile</span>
+      </div>
+      <div class="profile-cart-cnt">
+        <div class="profile" [matMenuTriggerFor]="Profile">
+          <mat-icon svgIcon="profile-icon" aria-hidden="false" aria-label="Search SVG icon" ></mat-icon>
+          <span>Profile</span>
         </div>
-
-        <div class="cart" (click)="handleCart()">
-            <mat-icon class="cart-icon" svgIcon="cart-icon" aria-hidden="false" aria-label="Cart SVG icon"></mat-icon>
-            <span>Cart</span>
+        <div class="cart-cntr" routerLink="/cart">
+          <mat-icon class="cart-icon" svgIcon="cart-icon" aria-hidden="false" aria-label="cart SVG icon" ></mat-icon>
+          <span>Cart</span>
         </div>
+      </div>
     </div>
-</div>
-
-<mat-menu #Profile="matMenu">
-    <div class="profile-history" *ngIf="loginLogOut">
-        <span><b>Welcome</b></span>
-        <span>To access account and manage orders</span>
-        <div class="login-signup">
-            <button mat-stroked-button color="warn" (click)="login()">LOGIN/SIGNUP</button>
-        </div>
-        <div>         <hr>
-        </div>
-        <div class="order-icon" routerLink="/orderList">My Orders</div>
-        <div class="heart-icon" routerLink="/wishList">&#x2764; Wishlist</div>
+  </div>
+  <mat-menu #Profile="matMenu">
+    <div class="header-profile" *ngIf="loginLogOut">
+      <div class="span-cnt">
+        <span class="Welcome">Welcome</span>
+        <span class="access">To access account and manage orders</span>
+      </div>
+      <div class="login-signup">
+        <button mat-stroked-button color="warn" (click)="login()">LOGIN/SIGNUP</button>
+      </div>
+      <div>
+        <hr />
+      </div>
+      <div class="myorders-img-icon">
+        <img src="assets/order.png" alt="My Orders Icon" class="order-icon" />
+        <div class="MyOrders" routerLink="/orderList">My Orders</div>
+      </div>
+      
+      <div class="myorders-img-icon">
+        <mat-icon  svgIcon="wishlist-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
+        <div class="heart-icon" routerLink="/wishList">Wishlist</div>
+      </div>
     </div>
     <div *ngIf="!loginLogOut">
-        <div class="login-signin">
-            <span>Hello Premkumar,</span>
-            <div class="profile-icon">Profile</div>
-            <div class="order-icon" routerLink="/orderList">My Orders</div>
-            <div class="heart-icon" routerLink="/wishList">&#x2764;My Wishlist</div>
-            <button mat-stroked-button color="warn" (click)="logout()">LOGOUT</button>
+      <div class="login-signin">
+        <span>Hello Prem Kumar</span>
+        <div class="profile-icon-container">
+          <mat-icon class="profile-icon" svgIcon="profile-icon-block" aria-hidden="false" aria-label="Search SVG icon" ></mat-icon>
+          <div class="profile-icon-text">Profile</div>
         </div>
+        <div class="myorders-img-icon">
+          <img src="assets/order.png" alt="My Orders Icon" class="order-icon"/>
+          <div class="MyOrders" routerLink="/orderList">My Orders</div>
+        </div>
+        <div class="wishlist-icon-container" routerLink="/wishList">
+          <mat-icon  svgIcon="wishlist-icon" aria-hidden="false" aria-label="Search SVG icon"></mat-icon>
+          <div class="wishlist-icon-text">My Wishlist</div>
+        </div>
+        <div class="login-signup">
+          <button mat-stroked-button color="warn" (click)="logout()">
+            LOGOUT
+          </button>
+        </div>
+      </div>
     </div>
-</mat-menu>
-
-<div>
-    <router-outlet></router-outlet>
-</div>
+  </mat-menu>
+  <router-outlet></router-outlet>
